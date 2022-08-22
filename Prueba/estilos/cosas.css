@@ -1,0 +1,46 @@
+.atributo{
+    margin: 0 auto;
+    width: 80%;
+    border:solid 1px rgb(163, 163, 163);
+}
+
+table{
+    margin: 0 auto;
+    width: 80%;
+    border: solid 1px rgb(163, 163, 163);
+    margin-bottom: 10px;
+    border-collapse: collapse;
+}
+
+td.titulo{
+    height: 5vh;
+    font-size: 25px;
+}
+
+td.titulo,a{
+    text-decoration: none;
+}
+
+td.img{
+    border: solid 1px rgb(163, 163, 163);
+    width: 20%;
+}
+
+td{
+    border: solid 1px rgb(163, 163, 163);
+}
+
+img{
+    width: 100%;
+}
+
+.buscador{
+    margin: 0 auto;
+    width: 80%;
+    border:solid 1px rgb(163, 163, 163);
+    margin-bottom: 5px;
+}
+
+.buscador input{
+    height: 25px;
+}
