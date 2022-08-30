@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-08-2022 a las 19:50:00
+-- Tiempo de generación: 31-08-2022 a las 01:36:40
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.0.19
 
@@ -43,19 +43,23 @@ CREATE TABLE `archivos` (
 --
 
 INSERT INTO `archivos` (`id_archivo`, `Id_ruta`, `Id_tipo_archivo`, `Id_palabra_clave`, `Nombre_Archivo`, `Titulo`, `Relacion`, `Area`) VALUES
-(4, '1', '1', '1', 'Exped_Jud_Aborigenes.pdf', 'Expedientes judiciales Pueblos aborigenes', 0, ''),
-(5, '1', '1', '2', 'Exp_ferrocarril.pdf', 'Expedientes judiciales Ferrocarril', 0, ''),
-(9, '2', '2', '1', 'dia_del_aborigen_americado.jpg', 'Foto por el dia del aborigen', 0, ''),
-(10, '2', '2', '2', 'Ferrovial.jpg', 'Foto de un tren 1890', 0, ''),
-(11, '2', '2', '2', 'trenes.jpg', 'Foto de un tren 1870', 0, ''),
-(12, '2', '2', '1', 'mismo_trato.jpg', 'Fotografia del Gobernador ', 0, ''),
-(14, '2', '2', '2', 'trenes.jpg', 'Fotografia del mismo tren 1870', 0, ''),
-(25, '4', '1', '2', 'tapa.jpg', 'hola', 8605, '1'),
-(26, '4', '1', '2', 'indice.jpg', 'hola', 8605, '1'),
-(27, '4', '1', '2', 'contra tapa.jpg', 'hola', 8605, '1'),
-(28, '4', '1', '1', 'tapa.jpg', 'trenes Argentinos', 2704, '1'),
-(29, '4', '1', '1', 'indice.jpg', 'trenes Argentinos', 2704, '1'),
-(30, '4', '1', '1', 'contra tapa.jpg', 'trenes Argentinos', 2704, '1');
+(4, '1', '1', '1', 'Exped_Jud_Aborigenes.pdf', 'Expedientes judiciales Pueblos aborigenes', 0, '3'),
+(5, '1', '1', '2', 'Exp_ferrocarril.pdf', 'Expedientes judiciales Ferrocarril', 0, '3'),
+(9, '2', '2', '1', 'dia_del_aborigen_americado.jpg', 'Foto por el dia del aborigen', 0, '2'),
+(10, '2', '2', '2', 'Ferrovial.jpg', 'Foto de un tren 1890', 0, '2'),
+(11, '2', '2', '2', 'trenes.jpg', 'Foto de un tren 1870', 0, '2'),
+(12, '2', '2', '1', 'mismo_trato.jpg', 'Fotografia del Gobernador ', 0, '2'),
+(14, '2', '2', '2', 'trenes.jpg', 'Fotografia del mismo tren 1870', 0, '2'),
+(36, '4', '5', '2', 'Producto MEGAINVER RENTA FIJA DOLARES - CLASE B.pdf', 'Memiras de jose de rieles', 6447, '1'),
+(37, '4', '5', '2', 'contra tapa.jpg', 'Memiras de jose de rieles', 6447, '1'),
+(38, '4', '5', '1', 'Producto MEGAINVER RENTA FIJA DOLARES - CLASE B.pdf', 'Los Aborigenes Argentinos', 6594, '1'),
+(39, '4', '5', '1', 'aborigen.jpg', 'Los Aborigenes Argentinos', 6594, '1'),
+(42, '4', '5', '0', '', 'formosa', 3125, '1'),
+(43, '4', '5', '0', '', 'formosa', 3125, '1'),
+(44, '4', '5', '1', 'libro_tapa.pdf', 'formosa', 2581, '1'),
+(45, '4', '5', '1', 'textiles-argentinos.jpg', 'formosa', 2581, '1'),
+(46, '4', '5', '4', '', '', 1536, '1'),
+(47, '4', '5', '4', '', '', 1536, '1');
 
 -- --------------------------------------------------------
 
@@ -89,8 +93,9 @@ CREATE TABLE `biblioteca` (
   `ID_Archivo` int(11) NOT NULL,
   `Titulo_libro` varchar(20) NOT NULL,
   `Autor` varchar(20) NOT NULL,
-  `Materia` varchar(20) NOT NULL,
+  `Materia` varchar(60) NOT NULL,
   `Tipo` int(11) NOT NULL,
+  `sinopsis` text NOT NULL,
   `ID_coleccion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -98,9 +103,12 @@ CREATE TABLE `biblioteca` (
 -- Volcado de datos para la tabla `biblioteca`
 --
 
-INSERT INTO `biblioteca` (`ID_Libro`, `ID_Archivo`, `Titulo_libro`, `Autor`, `Materia`, `Tipo`, `ID_coleccion`) VALUES
-(8, 27, 'hola', 'yo', 'queso', 1, 2),
-(9, 30, 'trenes Argentinos', 'jose', 'trenes', 1, 1);
+INSERT INTO `biblioteca` (`ID_Libro`, `ID_Archivo`, `Titulo_libro`, `Autor`, `Materia`, `Tipo`, `sinopsis`, `ID_coleccion`) VALUES
+(11, 37, 'Memiras de jose de r', 'josemaria lujan', 'memorrias de un hombre', 1, 'es un libro cuyo contenido es de los trenes argentinos y todos sus recorridos por toda nuetra gran republica', 2),
+(12, 39, 'Los Aborigenes Argen', 'Antonio Serrano', 'el estudio de los pueblos originarios', 1, 'este es un libro que contiene grandes historias de los pueblos originarios\r\n', 2),
+(14, 43, 'formosa', '', '', 1, '', 1),
+(15, 45, 'formosa', 'jose alsina', 'formosa', 1, 'reseña historica de la esc. 123', 1),
+(16, 47, '', '', '', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -182,7 +190,9 @@ CREATE TABLE `palabras_claves` (
 
 INSERT INTO `palabras_claves` (`Id_palabra_clave`, `palabra_clave`) VALUES
 (1, 'Pueblos aborigenes'),
-(2, 'Ferrocarril');
+(2, 'Ferrocarril'),
+(3, 'Textiles'),
+(4, '');
 
 -- --------------------------------------------------------
 
@@ -223,7 +233,7 @@ CREATE TABLE `tipo_archivo` (
 INSERT INTO `tipo_archivo` (`Id_tipo_Archivo`, `tipo`) VALUES
 (1, 'Expediente'),
 (2, 'Imagenes'),
-(5, 'PDF');
+(5, 'Libro');
 
 -- --------------------------------------------------------
 
@@ -316,7 +326,7 @@ ALTER TABLE `tipo_cont_b`
 -- AUTO_INCREMENT de la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `areas`
@@ -328,7 +338,7 @@ ALTER TABLE `areas`
 -- AUTO_INCREMENT de la tabla `biblioteca`
 --
 ALTER TABLE `biblioteca`
-  MODIFY `ID_Libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID_Libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `coleccion`
@@ -352,7 +362,7 @@ ALTER TABLE `fotografia`
 -- AUTO_INCREMENT de la tabla `palabras_claves`
 --
 ALTER TABLE `palabras_claves`
-  MODIFY `Id_palabra_clave` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_palabra_clave` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `rutas`
