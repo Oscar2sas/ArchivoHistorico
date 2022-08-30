@@ -2,13 +2,13 @@
    $Titulo = $_POST['titulo_biblioteca'];
    $Autor = $_POST['autor'];
    $Materia = $_POST['materia'];
+   $resumen = $_POST['sipn'];
 
    $Area = $_POST['area'];
 
     $id_ruta = 0;
     $tipo_A = 1;
 
-   $palabra_c = $_POST['PLC'];
    $tpd = $_POST['TPA'];
    $coleccion = $_POST['CLN'];
 
@@ -18,58 +18,41 @@
         $checks = false;
     }
 
-    if($Area == 1){
+    if (isset($_POST['palabraNueva'])) {
         
-   if($checks == true){
+        $Npalabra = $_POST['palabraNueva'];
+        $palabra_c = insertar_palabraC($Npalabra);
+        echo $palabra_c;
+    }else{
+        $palabra_c = $_POST['PLC'];
+    }
+
+    if($Area == 1){
 
         $nArchivo = $_FILES['Arch']['name'];
-        $tipo_Arch =  $_FILES['Arch']['type'];
-
-        $id_ruta = 3;
-
-        if ($tipo_Arch == 'aplication/pdf') {
-            $tipo_A = 5;
-        }
-
-        $carpeta_guardado = $_SERVER['DOCUMENT_ROOT']."/archivoProvincial/Biblioteca/";
-
-        #move_uploaded_file($_FILES['Arch']['tmp_name'],$carpeta_guardado.$nArchivo);
-
-        insertar_datos($id_ruta,$tipo_A,$palabra_c,$nArchivo,$Titulo,$Area,$Autor,$Materia,$tpd,$coleccion);
-
-    }else{
-
         $tipo_Arch =  $_FILES['TP']['type'];
         $imagenes = array();
 
         $nArchivo_tapa = $_FILES['TP']['name'];
-        $nArchivo_in = $_FILES['IN']['name'];
-        $nArchivo_CTP = $_FILES['CTP']['name'];
 
+        array_push($imagenes,$nArchivo);
         array_push($imagenes,$nArchivo_tapa);
-        array_push($imagenes,$nArchivo_in);
-        array_push($imagenes,$nArchivo_CTP);
 
-        if ($tipo_Arch == 'imagen/jpg') {
-            $tipo_A = 2;
-        }
+        $tipo_A = 5;
 
         $id_ruta = 4;
 
         $carpeta_guardado = $_SERVER['DOCUMENT_ROOT']."/archivoProvincial/Biblioteca/Imagenes/";
 
-        // move_uploaded_file($_FILES['TP']['tmp_name'],$carpeta_guardado.$nArchivo_tapa);
-        // move_uploaded_file($_FILES['IN']['tmp_name'],$carpeta_guardado.$nArchivo_in);
-        // move_uploaded_file($_FILES['CTP']['tmp_name'],$carpeta_guardado.$nArchivo_CTP);
+        move_uploaded_file($_FILES['TP']['tmp_name'],$carpeta_guardado.$nArchivo_tapa);
+        move_uploaded_file($_FILES['Arch']['tmp_name'],$carpeta_guardado.$nArchivo);
+
 
 
         $jose = rand(1,10000);
 
-        insertar_datos_L_B($id_ruta,$tipo_A,$palabra_c,$imagenes,$Titulo,$Area,$Autor,$Materia,$tpd,$coleccion,$jose);
+        insertar_datos_L_B($id_ruta,$tipo_A,$palabra_c,$imagenes,$Titulo,$Area,$Autor,$Materia,$tpd,$coleccion,$jose,$resumen);
 
-
-
-    }
     }
 
 
@@ -88,47 +71,56 @@
         return $Select;
     }
 
-    function insertar_datos($id_ruta_arg,$tipo_A_arg,$id_pa,$nArchivo,$titulo,$arg_area,$autor,$materia,$tpa,$col){
+    function buscar_ultimo_id_p(){
         $db = new ConexionDB;
         $conexion = $db->retornar_conexion();
-        $sql = "INSERT INTO archivos (Id_ruta,Id_tipo_archivo,Id_palabra_clave,Nombre_Archivo,Titulo,Area) VALUE('$id_ruta_arg','$tipo_A_arg','$id_pa','$nArchivo','$titulo','$arg_area');";
-        echo $sql;
-        // $statement = $conexion->prepare($sql);
-        // $statement->execute();
-    
-        
-        $ultimoId = buscar_ultimo_id();
-        $sql = "INSERT INTO biblioteca(ID_Archivo, Titulo_libro, Autor, Materia, Tipo, ID_coleccion) VALUES ('$ultimoId','$titulo','$autor','$materia','$tpa','$col');";
-        echo $sql;
+        $sql = "SELECT Id_palabra_clave FROM palabras_claves ORDER by Id_palabra_clave DESC LIMIT 1;";
+        $statement = $conexion->prepare($sql);
+        $statement->execute();
+        $Select = "";
 
-        // $statement = $conexion->prepare($sql);
-        // $statement->execute();
-    
+        while ($fila= $statement->fetch(PDO::FETCH_ASSOC)) {
+            $Select = $fila['Id_palabra_clave'];
+        }
         $statement = $db->cerrar_conexion($conexion);
-        // header("Location: index.php");
+        return $Select;
     }
 
-    function insertar_datos_L_B($id_ruta_arg,$tipo_A_arg,$id_pa,$lista,$titulo,$arg_area,$autor,$materia,$tpa,$col,$num){
+    function insertar_datos_L_B($id_ruta_arg,$tipo_A_arg,$id_pa,$lista,$titulo,$arg_area,$autor,$materia,$tpa,$col,$num,$res){
         $db = new ConexionDB;
         $conexion = $db->retornar_conexion();
 
         foreach($lista as $key){
         $sql = "INSERT INTO archivos (Id_ruta,Id_tipo_archivo,Id_palabra_clave,Nombre_Archivo,Titulo,Relacion,Area) VALUE('$id_ruta_arg','$tipo_A_arg','$id_pa','$key','$titulo','$num','$arg_area');";
-        echo $sql;
         $statement = $conexion->prepare($sql);
         $statement->execute();
         }
     
         
         $ultimoId = buscar_ultimo_id();
-        $sql = "INSERT INTO biblioteca(ID_Archivo, Titulo_libro, Autor, Materia, Tipo, ID_coleccion) VALUES ('$ultimoId','$titulo','$autor','$materia','$tpa','$col');";
-        echo $sql;
+        $sql = "INSERT INTO biblioteca(ID_Archivo, Titulo_libro, Autor, Materia, Tipo, sinopsis, ID_coleccion) VALUES ('$ultimoId','$titulo','$autor','$materia','$tpa','$res','$col');";
 
         $statement = $conexion->prepare($sql);
         $statement->execute();
     
         $statement = $db->cerrar_conexion($conexion);
-        // header("Location: index.php");
+        header("Location: index.php");
+    }
+
+    function insertar_palabraC($palabra){
+        $db = new ConexionDB;
+        $conexion = $db->retornar_conexion();
+        $sql = "INSERT INTO `palabras_claves`(`palabra_clave`) VALUES ('$palabra');";
+        echo $sql;
+        $statement = $conexion->prepare($sql);
+        $statement->execute();
+
+        
+        $ultimoId = buscar_ultimo_id_p();
+
+        $statement = $db->cerrar_conexion($conexion);
+
+        return $ultimoId;
     }
 
 

@@ -22,6 +22,27 @@ const Imprimiri = (sas) =>{
     
 }
 
+const palabrasL = async() =>{
+    const data = new FormData();
+
+    data.append('accion','palabra');
+
+    const URL = 'modeloimagen.php';
+    const CONFIG = {
+        method: 'POST',
+        body: data
+    };
+
+    try {
+        const enviar = await fetch(URL, CONFIG);
+        const recibir = await enviar.json();
+
+        $('#pala').append(`${recibir}`);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const biblioteca = async() =>{
     const data = new FormData();
 
@@ -38,18 +59,15 @@ const biblioteca = async() =>{
         const recibir = await enviar.json();
         
         $('#formulario').append(`${recibir}`);
-        $('#sas').ready(function() {
-            $('#olas').change(function() {
+        $('#sas').ready(function() { 
+            $('#plc').change( function() { 
                 if(this.checked){
-                    document.getElementById('arch').disabled = false;
-                    document.getElementById('tapa').disabled = true;
-                    document.getElementById('indice').disabled = true;
-                    document.getElementById('ct').disabled = true;
+                    document.getElementById('palabra').remove();
+                    $('#pala').append('<input name="palabraNueva" id="palabraN">');
+
                 }else{
-                    document.getElementById('arch').disabled = true;
-                    document.getElementById('tapa').disabled = false;
-                    document.getElementById('indice').disabled = false;
-                    document.getElementById('ct').disabled = false;
+                    document.getElementById('palabraN').remove();
+                    palabrasL();
                 }
             });
 
