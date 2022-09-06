@@ -1,6 +1,6 @@
 <?php
 $carpeta_trabajo="";
-$seccion_trabajo="/index.php";
+$seccion_trabajo="/controladores";
 
 if (strpos($_SERVER["PHP_SELF"], $seccion_trabajo) >1 ) {
     $carpeta_trabajo=substr($_SERVER["PHP_SELF"],1, strpos($_SERVER["PHP_SELF"] , $seccion_trabajo) -1);
@@ -13,9 +13,9 @@ if (!empty($carpeta_trabajo)) {
     
 }
 
-include($absolute_include. "datos/global.php");
-
+include($absolute_include."datos/global.php");
 include($absolute_include."administracion/sesion.php");
 
-header("Location: ".$carpeta_trabajo."/controladores/inicio/");
+include($absolute_include."vista/inicio/index.php");
+
 ?>
