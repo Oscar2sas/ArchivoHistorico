@@ -2,11 +2,9 @@
 
 session_start();
 
-if(!isset($_SESSION['usuario'])) 
-{
+if(!isset($_SESSION['usuario'])) {
 header("Location: ".$carpeta_trabajo."/administracion/login.php" );
 }
-$usuarios_permitidos = array(1,2);
 
 if (!empty($usuarios_permitidos)) {
     $permitidos = $usuarios_permitidos;
