@@ -20,7 +20,7 @@ if (isset($_REQUEST['accion'])) {
     $accion = $_REQUEST['accion'];
 }
 
-if ($accion = "" || $accion=="index") {
+if ($accion == "" || $accion=="index") {
     include($absolute_include."vista/registrar/index.php");
 }elseif ($accion == 'registrar') {
     usuarios_incertar($_POST,$_FILES);

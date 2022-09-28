@@ -29,8 +29,25 @@
 		echo '<br><p><h1 class="error">'.$des_error.'</h1></p>';
 	}
 ?>
-    <h1>ESTA ES LA VISTA DE LOGIN</h1>
-	
-	<form
+    <h1>INICIAR SESION</h1>
+
+	<form>
+		<div>
+		<p> 
+		<input type="email" placeholder="Ingrese su Email"  autofocus class="form-control" name="usuario" required>
+		</p>
+		<p>
+		<input type="password" autofocus class="form-control" name="password" placeholder="Ingrese su password" required>
+		</p>
+		<p>
+		<button type="submit"> Iniciar Sesion</button>
+		</p>
+		<p>
+		</div>
+	</form>
+	<p>
+	<a href="<?php echo $carpeta_trabajo;?>/administracion/registrar.php"><button type="submit"> Registrarse</button></a>
+		</p>
+	</p>
 </body>
 </html>
