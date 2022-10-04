@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="<?php echo $carpeta_trabajo;?>/estilos/index.css">
     <title>Login</title>
 	<style>
 .error{
@@ -14,7 +15,7 @@
 }
 </style>
 </head>
-<body>
+<body class="fondo">
 
 <?php
 	if(isset($_GET['error'])){
@@ -29,10 +30,14 @@
 		echo '<br><p><h1 class="error">'.$des_error.'</h1></p>';
 	}
 ?>
-    <h1>INICIAR SESION</h1>
-
-	<form>
-		<div>
+	<div class="imagen" >
+	<img width="150" src="<?php echo $carpeta_trabajo;?>/storage/imagenes/patrimonio.png" alt="logo">
+	</div>
+	<div class="tabla">
+	<form >
+	<div class="titulo">
+    INICIAR SESION
+	</div>
 		<p> 
 		<input type="email" placeholder="Ingrese su Email"  autofocus class="form-control" name="usuario" required>
 		</p>
@@ -42,12 +47,12 @@
 		<p>
 		<button type="submit"> Iniciar Sesion</button>
 		</p>
-		<p>
-		</div>
+		
 	</form>
 	<p>
 	<a href="<?php echo $carpeta_trabajo;?>/administracion/registrar.php"><button type="submit"> Registrarse</button></a>
 		</p>
-	</p>
+	</div>
+	
 </body>
 </html>

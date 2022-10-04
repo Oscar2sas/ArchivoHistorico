@@ -1,0 +1,51 @@
+.fondo{
+    background-color: #d6ebd0;
+    text-align: center;
+}
+.titulo{
+    font-size: 25px;
+    font-family: sans-serif;
+    text-align: center;
+    border-bottom: solid 1px black;
+    font-weight:bold;
+
+
+}
+.tabla{
+    margin: 0 auto;
+    background-color: #efffe8;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 4px 3px 8px black;   
+    display: inline-block; 
+    font-family: sans-serif;
+}
+.imagen{
+    justify-content: center;
+    margin-bottom: 15px;
+}
+.text{
+    font-size: 15px;
+    padding: 5px;
+    width: 250px;
+}
+.boton{
+    transition: 01s;
+    background-color: #cddfc9 ;
+    color: #696d68 ;
+    outline: none;
+    border: none;
+    padding: 15px;
+    font-size: 15px;
+    border-radius: 10px;
+}
+.boton:hover{
+    transition: 1s;
+    background-color: #a5c29f;
+    
+}
+.text1{
+    font-size: 15px;
+    display: block;
+
+}

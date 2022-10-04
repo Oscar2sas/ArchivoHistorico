@@ -13,28 +13,42 @@
   } 
 
   ?> 
+  <div class="imagen" >
+	<img width="200" src="<?php echo $carpeta_trabajo;?>/storage/imagenes/patrimonio.png" alt="logo">
+  </div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="<?php echo $carpeta_trabajo;?>/estilos/index.css">
+    <title>RESGISTRO</title>
 </head>
-<body>
-    <h1>REGISTRAR USUARIO</h1>
-<form>
+<body class="fondo" >
+  
+
+    
+<div>
+<div class="tabla">
+<div class="titulo">
+REGISTRAR USUARIO
+   </div>
+<form  method="post" accion="<?php echo $carpeta_trabajo;?>/administracion/registrar.php">
 <input type="hidden" name="accion" value="registrar">
-    <div>
-    <p><input type="email" placeholder="Ingrese su nombre de Usuario"></p>
-    <p><input type="email" placeholder="Ingrese su email"></p>
+    
+    <p><input  class="text" type="email" placeholder="Nombre de Usuario"></p>
+    <p><input class="text" type="email" placeholder="Email"></p>
     <p>
-    <input type="text" placeholder="Ingrese su contraseña">
+    <input class="text" type="text" placeholder="Contraseña">
     </p>
-    </div>
+    <input class="text" type="text" placeholder=" Confirme su Contraseña">
+    </p>
+    <p>
+    <button type="submit" class="boton"> Registrarse</button>
+    </p>
 </form>
-<p>
-	<a href="<?php echo $carpeta_trabajo;?>/administracion/registrar.php"><button type="submit"> Registrarse</button></a>
-</p>
+</div>
+</div>
 </body>
 </html>
