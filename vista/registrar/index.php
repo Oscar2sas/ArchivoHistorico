@@ -37,12 +37,10 @@ REGISTRAR USUARIO
 <form  method="post" accion="<?php echo $carpeta_trabajo;?>/administracion/registrar.php">
 <input type="hidden" name="accion" value="registrar">
     
-    <p><input  class="text" type="email" placeholder="Nombre de Usuario"></p>
-    <p><input class="text" type="email" placeholder="Email"></p>
+    <p><input  class="text" type="text" placeholder="Nombre de Usuario" name="cnombre_usuario"></p>
+    <p><input class="text" type="email" placeholder="Email" name="cemail_usuario"></p>
     <p>
-    <input class="text" type="text" placeholder="Contraseña">
-    </p>
-    <input class="text" type="text" placeholder=" Confirme su Contraseña">
+    <input class="text" type="password" placeholder="Contraseña" name="cpassword_usuario">
     </p>
     <p>
     <button type="submit" class="boton"> Registrarse</button>

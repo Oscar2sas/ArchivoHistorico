@@ -36,18 +36,21 @@ if(!$resultados){
     $usuario_id = 0;
     header("Location: ".$carpeta_trabajo."/administracion/login.php?error=2");
 }else{
-
-    $usuario_id = $resultados['usuario_id'];
+	
+	var_dump($resultados);
+    $usuario_id = $resultados['id_usuarios'];
     $nombre_usuario = $resultados['cnombre_usuario'];
-    $usuario = $resultados['cmail_usuario'];
+    $usuario = $resultados['cemail_usuario'];
     $hash = $resultados['cpassword_usuario'];
 
     $rela_rol_id = $resultados['rela_rol_id'];
-    $cimg_usuario = $resultados['cimg_usuario'];
 
-    $rol = $resultados['cdescripcion_rol'];
-
-    $estado_usuario = $resultados['nestado_usuario'];
+    $estado_usuario = $resultados['estado'];
+	
+	/*$so = password_hash(trim('queso2022'), PASSWORD_DEFAULT);
+	$contr = password_verify('queso2022',$hash);
+	
+	echo 'la contraseña es: '.$contr;*/
 
     if (!password_verify($password, $hash)) {
         
@@ -57,7 +60,7 @@ if(!$resultados){
     if ($rela_rol_id == 20) {
         $usuario_id = 0;
         header("Location: ".$carpeta_trabajo."/administracion/login.php?error=4");
-    }if ($estado_usuario = 2) {
+    }if ($estado_usuario == 2) {
         $usuario_id = 0;
         header("Location: ".$carpeta_trabajo."/administracion/login.php?error=3");
     }
@@ -83,8 +86,6 @@ if(!$resultados){
     if (($usuario_id != 0) && ($rela_rol_id == 1) || ($rela_rol_id == 2) || ($rela_rol_id == 3) || ($rela_rol_id == 4) ) {
         header("Location: ".$carpeta_trabajo."/index.php");
     }
-
-    
 
 
 }

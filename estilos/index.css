@@ -1,15 +1,13 @@
 .fondo{
     background-color: #d6ebd0;
     text-align: center;
+	font-family: sans-serif;
 }
 .titulo{
     font-size: 25px;
-    font-family: sans-serif;
     text-align: center;
     border-bottom: solid 1px black;
     font-weight:bold;
-
-
 }
 .tabla{
     margin: 0 auto;
@@ -28,24 +26,64 @@
     font-size: 15px;
     padding: 5px;
     width: 250px;
+	outline-color:#5c9dbc;
 }
 .boton{
-    transition: 01s;
-    background-color: #cddfc9 ;
-    color: #696d68 ;
+    transition: 0.2s;
+    background-color: #5c9dbc ;
+    color: #000007 ;
     outline: none;
     border: none;
     padding: 15px;
     font-size: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 .boton:hover{
-    transition: 1s;
-    background-color: #a5c29f;
+    transition: 0.5s;
+    background-color: #4986bc;
+	color:#ffffff;
     
 }
-.text1{
-    font-size: 15px;
-    display: block;
-
+.error{
+	width:25%;
+	margin: 0 auto;
+	text-align: 'center';
+	color: #c0392b;
+	background-color: #ff8362;
+	margin-bottom:10px;
+	font-size:24px;
+	font-weight:bold;
+	padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 1px 3px black;
+}
+.inputB{
+	margin-right:0;
+	display:'inline-block';
+	outline:none;
+	padding:15px;
+	padding-left:40px;
+	font-size:24px;
+	width:700px;
+	border-top-left-radius:80px;
+	border-bottom-left-radius:80px;
+	border:none;
+	box-shadow: 1px 1px 5px black;
+	
+	
+}
+.botonB{
+	margin:0;
+	padding:15px;
+	font-size:22px;
+	border:none;
+	background-color: white;
+	border-top-right-radius:80px;
+	border-bottom-right-radius:80px;
+	display:'inline-block';
+	box-shadow: 2px 1px 5px black;
+}
+.botonB:hover{
+	transition:0.5s;
+	background-color:#BDC3C7;
 }
