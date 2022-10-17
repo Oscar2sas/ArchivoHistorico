@@ -37,7 +37,7 @@ if(!$resultados){
     header("Location: ".$carpeta_trabajo."/administracion/login.php?error=2");
 }else{
 	
-	var_dump($resultados);
+	//var_dump($resultados);
     $usuario_id = $resultados['id_usuarios'];
     $nombre_usuario = $resultados['cnombre_usuario'];
     $usuario = $resultados['cemail_usuario'];
@@ -71,8 +71,6 @@ if(!$resultados){
     $_SESSION['Password'] = $password;
 
     $_SESSION['rela_rol_id'] = $rela_rol_id;
-    $_SESSION['Rol'] = $rol;
-    $_SESSION['ImagenPerfil'] = $cimg_usuario;
 
     $hora = date('H:i');
     $session_id = session_id();
@@ -81,7 +79,7 @@ if(!$resultados){
     $_SESSION['token'] = $token;
 
     $cdescripcion_log = 'Ingreso el sistema: '.$_SESSION['nombreUsuario'].' con ID: '.$_SESSION['usuario_id'];
-    insertar_log($cdescripcion_log);
+    //insertar_log($cdescripcion_log);
 
     if (($usuario_id != 0) && ($rela_rol_id == 1) || ($rela_rol_id == 2) || ($rela_rol_id == 3) || ($rela_rol_id == 4) ) {
         header("Location: ".$carpeta_trabajo."/index.php");

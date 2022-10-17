@@ -24,7 +24,7 @@
         
          $Npalabra = $POST['palabraNueva'];
          $palabra_c = insertar_palabraC($Npalabra);
-         echo $palabra_c;
+         //echo $palabra_c;
      }else{
          $palabra_c = $POST['PLC'];
      }
@@ -53,7 +53,7 @@
 
          $jose = rand(1,10000);
 
-         insertar_datos_L_B($id_ruta,$tipo_A,$palabra_c,$imagenes,$Titulo,$Area,$Autor,$Materia,$tpd,$coleccion,$jose,$resumen);
+        insertar_datos_L_B($id_ruta,$tipo_A,$palabra_c,$imagenes,$Titulo,$Area,$Autor,$Materia,$tpd,$coleccion,$jose,$resumen);
 
 	}}
 
@@ -106,7 +106,7 @@
          $statement->execute();
     
          $statement = $db->cerrar_conexion($conexion);
-         header("Location: index.php");
+         header("Location: index.php ");
      }
 
      function insertar_palabraC($palabra){
@@ -146,7 +146,7 @@
 
         $statement = $db->cerrar_conexion($conexion);
 
-        return $formulario;
+        echo $formulario;
     }
 
     function Palabras_L(){
@@ -218,11 +218,6 @@
     }
 
     function formar_Formulario(){
-        $omar ="<div id='sas'>\n
-        <p><label>Titulo: </label><input type='text' name='titulo_biblioteca'></p>\n
-        <p><label>Autor: </label><input type='text' name='autor'></p>\n
-        <p><label>Materia: </label><input type='text' name='materia'></p>\n
-        <p><label>Palabra clave: </label></p><p id='pala' >";
 
         $omar.= Palabras_claves();
         $omar.= "</p><p><label>Nueva palabra Clave: </label><input type='checkbox' name='' id='plc'>

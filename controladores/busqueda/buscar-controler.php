@@ -21,6 +21,7 @@
 	include($absolute_include."modelo/busqueda/busqueda-modelo.php");
 	
 	if($accion == ''){
+        $resultado_de_busqueda = buscar($aBuscar);
 		include($absolute_include."vista/busqueda/busqueda-vista.php");
 	}
 	
