@@ -26,9 +26,6 @@
 	}
 	
 	
-	
-	$resultado_de_busqueda = buscar($aBuscar);
-	
 	function buscar($buscar){
         $db = new ConexionDB;
         $conexion = $db->retornar_conexion();

@@ -1,0 +1,33 @@
+*{
+	morgin: 0;
+	padding: 0;
+	
+}
+.menu{
+	background-color: #e9183b;
+	height: 75xp;
+	width: 100vw;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1xp solid #fff;
+	box-shadow: 5xp 0 10xp rgba (0, 0, 0, .6);
+}
+
+.logo{
+	color: #fff;
+	font-size: 35xp;
+	padding: 0 80xp;
+	font-weight: bold;
+}
+
+.menu_items{
+	display: flex;
+	list-style: none;
+	margin-right: 30xp
+}
+
+.menu_items li{
+	border-radius: 3xp;
+	margin: 0 5xp
+}

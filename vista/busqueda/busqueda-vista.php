@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="<?php echo $absolute_include ?>estilos/cosas.css">
 </head>
 <body>
+
     <form action="" method="post">
         <div class="buscador">
         <input type="text" name="busqueda" id="" value="<?php echo $aBuscar; ?>">

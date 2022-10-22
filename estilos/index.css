@@ -1,5 +1,5 @@
 .fondo{
-    background-color: #d6ebd0;
+    background-color: #FAFAFA;
     text-align: center;
 	font-family: sans-serif;
 }
@@ -11,12 +11,12 @@
 }
 .tabla{
     margin: 0 auto;
-    background-color: #efffe8;
+    background-color: #FFFFFF;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 4px 3px 8px black;   
     display: inline-block; 
     font-family: sans-serif;
+	border: 2px solid #E6E6E6;
 }
 .imagen{
     justify-content: center;
@@ -58,13 +58,13 @@
     box-shadow: 2px 1px 3px black;
 }
 .inputB{
+	width:calc(100% - 800px);
 	margin-right:0;
-	display:'inline-block';
+	display:inline-block;
 	outline:none;
 	padding:15px;
 	padding-left:40px;
 	font-size:24px;
-	width:700px;
 	border-top-left-radius:80px;
 	border-bottom-left-radius:80px;
 	border:none;

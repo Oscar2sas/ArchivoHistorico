@@ -1,129 +1,137 @@
 <?php
 
 	function guardar($POST){
-    $Titulo = $POST['titulo_biblioteca'];
-    $Autor = $POST['autor'];
-    $Materia = $POST['materia'];
-    $resumen = $POST['sipn'];
+		$Titulo = $POST['titulo_biblioteca'];
+		$Autor = $POST['autor'];
+		$Materia = $POST['materia'];
+		$resumen = $POST['sipn'];
 
-    $Area = $POST['area'];
+		$Area = $POST['area'];
 
-     $id_ruta = 0;
-     $tipo_A = 1;
+		$id_ruta = 0;
+		$tipo_A = 1;
 
-    $tpd = $POST['TPA'];
-    $coleccion = $POST['CLN'];
+		$tipo_cont_b = $POST['TipoCB'];
+		$coleccion = $POST['CLN'];
 
-     if (isset($POST['julio'])) {
-         $checks = $POST['julio'];
-     } else{
-         $checks = false;
-     }
+		if (isset($POST['julio'])) {
+			$checks = $POST['julio'];
+		}else{
+			$checks = false;
+		}
 
-     if (isset($POST['palabraNueva'])) {
+		if (isset($POST['palabraNueva'])) {
+			
+			$Npalabra = $POST['palabraNueva'];
+			$palabra_c = insertar_palabraC($Npalabra);
+		}else{
+			$palabra_c = $POST['PLC'];
+		}
+
+		 if($Area == 1){
+
+			$nArchivo = $_FILES['Arch']['name'];
+			$tipo_Arch =  $_FILES['TP']['type'];
+			$imagenes = array();
+
+			$nArchivo_tapa = $_FILES['TP']['name'];
+
+			array_push($imagenes,$nArchivo);
+			array_push($imagenes,$nArchivo_tapa);
+
+			$tipo_A = 5;
+
+			$id_ruta = 1;
+
+			$carpeta_guardado = $_SERVER['DOCUMENT_ROOT']."/StorageArchivoHistorico/Biblioteca/Imagenes/";
+
+			move_uploaded_file($_FILES['TP']['tmp_name'],$carpeta_guardado.$nArchivo_tapa);
+			move_uploaded_file($_FILES['Arch']['tmp_name'],$carpeta_guardado.$nArchivo);
+
+
+
+			$relacion = rand(1,1000);
+			 
+			$datos_libro=[
+				"ruta" => $id_ruta,
+				"tipo_archivo" => $tipo_A,
+				"palabraClave" => $palabra_c,
+				"imagenes" => $imagenes,
+				"titulo" => $Titulo,
+				"area" => $Area,
+				"autor" => $Autor,
+				"materia" => $Materia,
+				"tipoDeContenido" => $tipo_cont_b,
+				"coleccion" => $coleccion,
+				"relacion" => $relacion,
+				"resumen" => $resumen,
+			];
+
+			insertar_datos_L_B($datos_libro);
+
+		}
+	}
+
+    function insertar_datos_L_B($datosLibros){
+		
+		$id_ruta_arg = $datosLibros['ruta'];
+		$tipo_A_arg = $datosLibros['tipo_archivo'];
+		$id_pa = $datosLibros['palabraClave'];
+		$titulo = $datosLibros['titulo'];
+		$num = $datosLibros['relacion'];
+		$arg_area = $datosLibros['area'];
+		$lista = $datosLibros['imagenes'];
+		$col = $datosLibros['coleccion'];
+		$res = $datosLibros['resumen'];
+		$materia = $datosLibros['materia'];
+		$autor = $datosLibros['autor'];
+		$tpcB = $datosLibros['tipoDeContenido'];
+		
+        $db = new ConexionDB;
+        $conexion = $db->retornar_conexion();
+
+        foreach($lista as $key){
+			$sql = "INSERT INTO archivos (Id_ruta,Id_tipo_archivo,Id_palabra_clave,Nombre_Archivo,Titulo,Relacion,Area) VALUE(?,?,?,?,?,?,?);";
+			$statement = $conexion->prepare($sql);
+			try{
+				$statement->bindParam(1,$id_ruta_arg,PDO::PARAM_STR);
+				$statement->bindParam(2,$tipo_A_arg,PDO::PARAM_STR);
+				$statement->bindParam(3,$id_pa,PDO::PARAM_STR);
+				$statement->bindParam(4,$key,PDO::PARAM_STR);
+				$statement->bindParam(5,$titulo,PDO::PARAM_STR);
+				$statement->bindParam(6,$num,PDO::PARAM_INT);
+				$statement->bindParam(7,$arg_area,PDO::PARAM_STR);
+				$statement->execute();
+			}catch(PDOException $ex){
+				echo $ex->getMessage();
+			}
+        }
+    
         
-         $Npalabra = $POST['palabraNueva'];
-         $palabra_c = insertar_palabraC($Npalabra);
-         //echo $palabra_c;
-     }else{
-         $palabra_c = $POST['PLC'];
-     }
+        $ultimoId = $conexion->lastInsertId();
+        $sql = "INSERT INTO biblioteca(ID_Archivo, Titulo_libro, Autor, Materia, Tipo, sinopsis, ID_coleccion) VALUES ('$ultimoId','$titulo','$autor','$materia','$tpcB','$res','$col');";
 
-     if($Area == 1){
-
-         $nArchivo = $_FILES['Arch']['name'];
-         $tipo_Arch =  $_FILES['TP']['type'];
-         $imagenes = array();
-
-         $nArchivo_tapa = $_FILES['TP']['name'];
-
-         array_push($imagenes,$nArchivo);
-         array_push($imagenes,$nArchivo_tapa);
-
-         $tipo_A = 5;
-
-         $id_ruta = 4;
-
-         $carpeta_guardado = $_SERVER['DOCUMENT_ROOT']."/StorageArchivoHistorico/Biblioteca/Imagenes/";
-
-         move_uploaded_file($_FILES['TP']['tmp_name'],$carpeta_guardado.$nArchivo_tapa);
-         move_uploaded_file($_FILES['Arch']['tmp_name'],$carpeta_guardado.$nArchivo);
-
-
-
-         $jose = rand(1,10000);
-
-        insertar_datos_L_B($id_ruta,$tipo_A,$palabra_c,$imagenes,$Titulo,$Area,$Autor,$Materia,$tpd,$coleccion,$jose,$resumen);
-
-	}}
-
-
-    function buscar_ultimo_id(){
-         $db = new ConexionDB;
-         $conexion = $db->retornar_conexion();
-         $sql = "SELECT Id_archivo FROM archivos ORDER by id_archivo DESC LIMIT 1;";
-         $statement = $conexion->prepare($sql);
-         $statement->execute();
-         $Select = "";
-
-         while ($fila= $statement->fetch(PDO::FETCH_ASSOC)) {
-             $Select = $fila['Id_archivo'];
-         }
-         $statement = $db->cerrar_conexion($conexion);
-         return $Select;
+        $statement = $conexion->prepare($sql);
+        $statement->execute();
+    
+        $statement = $db->cerrar_conexion($conexion);
     }
 
-     function buscar_ultimo_id_p(){
-         $db = new ConexionDB;
-         $conexion = $db->retornar_conexion();
-         $sql = "SELECT Id_palabra_clave FROM palabras_claves ORDER by Id_palabra_clave DESC LIMIT 1;";
-         $statement = $conexion->prepare($sql);
-         $statement->execute();
-         $Select = "";
-
-         while ($fila= $statement->fetch(PDO::FETCH_ASSOC)) {
-             $Select = $fila['Id_palabra_clave'];
-         }
-         $statement = $db->cerrar_conexion($conexion);
-         return $Select;
-     }
-
-     function insertar_datos_L_B($id_ruta_arg,$tipo_A_arg,$id_pa,$lista,$titulo,$arg_area,$autor,$materia,$tpa,$col,$num,$res){
-         $db = new ConexionDB;
-         $conexion = $db->retornar_conexion();
-
-         foreach($lista as $key){
-         $sql = "INSERT INTO archivos (Id_ruta,Id_tipo_archivo,Id_palabra_clave,Nombre_Archivo,Titulo,Relacion,Area) VALUE('$id_ruta_arg','$tipo_A_arg','$id_pa','$key','$titulo','$num','$arg_area');";
-         $statement = $conexion->prepare($sql);
-         $statement->execute();
-         }
-    
-        
-         $ultimoId = buscar_ultimo_id();
-         $sql = "INSERT INTO biblioteca(ID_Archivo, Titulo_libro, Autor, Materia, Tipo, sinopsis, ID_coleccion) VALUES ('$ultimoId','$titulo','$autor','$materia','$tpa','$res','$col');";
-
-         $statement = $conexion->prepare($sql);
-         $statement->execute();
-    
-         $statement = $db->cerrar_conexion($conexion);
-         header("Location: index.php ");
-     }
-
-     function insertar_palabraC($palabra){
-         $db = new ConexionDB;
-         $conexion = $db->retornar_conexion();
-         $sql = "INSERT INTO `palabras_claves`(`palabra_clave`) VALUES ('$palabra');";
-         echo $sql;
-         $statement = $conexion->prepare($sql);
-         $statement->execute();
+    function insertar_palabraC($palabra){
+        $db = new ConexionDB;
+        $conexion = $db->retornar_conexion();
+        $sql = "INSERT INTO `palabras_claves`(`palabra_clave`) VALUES ('$palabra');";
+		
+        $statement = $conexion->prepare($sql);
+        $statement->execute();
 
         
-         $ultimoId = buscar_ultimo_id_p();
+        $ultimoId = buscar_ultimo_id_p();
 
-         $statement = $db->cerrar_conexion($conexion);
+        $statement = $db->cerrar_conexion($conexion);
 
-         return $ultimoId;
-     }
+        return $ultimoId;
+    }
 
 
 
@@ -149,28 +157,6 @@
         echo $formulario;
     }
 
-    function Palabras_L(){
-        $db = new ConexionDB;
-        $conexion = $db->retornar_conexion();
-
-        $sql = 'SELECT * FROM palabras_claves';
-
-        $statement = $conexion->prepare($sql);
-        $statement->execute();
-
-        $formulario = '<select name="PLC" id="palabra">';
-        $formulario.='<option value="0">Elige la palabra clave</option>';
-
-        while ($fila= $statement->fetch(PDO::FETCH_ASSOC)) {
-            $formulario.='<option value="'.$fila['Id_palabra_clave'].'">'.$fila['palabra_clave'].'</option>';
-        }
-        $formulario.= '</select>';
-
-        $statement = $db->cerrar_conexion($conexion);
-
-        return $formulario;
-    }
-
     function Tipo_Archivo(){
         $db = new ConexionDB;
         $conexion = $db->retornar_conexion();
@@ -180,7 +166,7 @@
         $statement = $conexion->prepare($sql);
         $statement->execute();
 
-        $formulario = '<p><label>Tipo de documento: </label><select name="TPA" id="TPA">';
+        $formulario = '<p><label>Tipo de documento: </label><select name="TipoCB" id="TPA">';
 
         while ($fila= $statement->fetch(PDO::FETCH_ASSOC)) {
             $formulario.='<option value="'.$fila['ID_tipo_cont_b'].'">'.$fila['Descripcion'].'</option>';
@@ -215,26 +201,6 @@
         $statement = $db->cerrar_conexion($conexion);
 
         echo $formulario;
-    }
-
-    function formar_Formulario(){
-
-        $omar.= Palabras_claves();
-        $omar.= "</p><p><label>Nueva palabra Clave: </label><input type='checkbox' name='' id='plc'>
-        </p>";
-        $omar.= Tipo_Archivo();
-
-        $omar.= Coleccion();
-
-        $omar.= "
-        <p><label>Archivo: </label><input type='file' name='Arch' id='arch'></p><div id=omar>\n
-        <p><label>Tapa: </label><input type='file' id='tapa' name='TP' ></p>\n
-        <p><label>Sinopsis: </label></p></div>\n
-        <p><textarea name='sipn' id='' cols='30' rows='10'></textarea></p>
-        <p><input type='submit' name='saso'></p>\n
-        </div>";
-
-        return $omar;
     }
 
     function buscar_areas(){

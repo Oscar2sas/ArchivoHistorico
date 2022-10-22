@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="<?php echo $absolute_include;?>estilos/cosas.css">
 </head>
-
 <body>
+<?php 
+	include($absolute_include.'vista/componentes/Navbar.php');
+ ?>
 
     <form action="<?php echo $absolute_include;?>controladores/Subir_archivo/controler-sub.php" method="post"
         enctype="multipart/form-data">
