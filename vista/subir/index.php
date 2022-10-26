@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?php echo $absolute_include;?>RemixIcon_Fonts_v2.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="<?php echo $absolute_include;?>estilos/bootstrap/css/bootstrap.min.css">
 </head>
-<body>
+<body class ="fondo">
 <?php 
 	include($absolute_include.'vista/componentes/Navbar.php');
  ?>

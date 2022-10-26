@@ -20,8 +20,8 @@ include ($absolute_include. "datos/global.php");
 include ($absolute_include. "conexion/conexion.php");
 include ($absolute_include. "modelo/log/modelo_log.php");
 
-$cdescripcion_log = " salida del sistema : ".$_SESSION['Nombre_usuario']."con ID: ".$_SESSION['usuario_id'];
-insertar_log($cdescripcion_log);
+// $cdescripcion_log = " salida del sistema : ".$_SESSION['nombreUsuario']."con ID: ".$_SESSION['usuario_id'];
+// insertar_log($cdescripcion_log);
 
 session_destroy();
 
