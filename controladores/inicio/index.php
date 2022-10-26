@@ -14,7 +14,7 @@ if (!empty($carpeta_trabajo)) {
 }
 
 include($absolute_include."datos/global.php");
-include($absolute_include."administracion/sesion.php");
+include($absolute_include."administracion/sesion2.php");
 
 include($absolute_include."vista/inicio/index.php");
 

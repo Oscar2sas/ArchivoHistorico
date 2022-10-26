@@ -5,7 +5,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="<?php echo $absolute_include;?>estilos/cosas.css">
 </head>
-<body>
+<body class ="fondo">
 <?php 
 	include($absolute_include.'vista/componentes/Navbar.php');
  ?>

@@ -9,8 +9,15 @@
     <title>Document</title>
 </head>
 <body class='fondo'>
-<?php 
-	include($absolute_include.'vista/componentes/sideBar.php');
+	
+<?php
+	if (@$_SESSION['rela_rol_id'] == 1){
+		include($absolute_include.'vista/componentes/sideBar.php');
+		echo "<a href='".$carpeta_trabajo."/administracion/logout.php'>cerrar sesion</a>";
+	} 
+	elseif(@$_SESSION['rela_rol_id'] == ''){
+		include($absolute_include.'vista/componentes/botones-inicio.php');
+	}
  ?>
 <div class="imagen" >
 		<img width="200" src="<?php echo $carpeta_trabajo;?>/storage/imagenes/patrimonio.png" alt="logo">

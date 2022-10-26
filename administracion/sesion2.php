@@ -2,10 +2,6 @@
 
 session_start();
 
-if(!isset($_SESSION['Usuario'])) {
-header("Location: ".$carpeta_trabajo."/controladores/inicio/index.php" );
-}
-
 if (!empty($usuarios_permitidos)) {
     $permitidos = $usuarios_permitidos;
 }else{

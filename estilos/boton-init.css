@@ -1,0 +1,24 @@
+.boton-init{
+    text-decoration: none;
+    flex-direction: row-reverse;
+    padding: 10px 40px;
+    border: 2px solid #fff;
+    background: #151719;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color:#ECF0F1;
+    outline: none;
+    transition: all 300ms;
+    border-radius: 10px;
+}
+.boton-init:hover{
+    background-color: #ECF0F1 ;
+    color: #0D47A1;
+}
+
+.boton_contendor{  
+    display: block;
+    float: right;
+    padding: 5px;
+}
