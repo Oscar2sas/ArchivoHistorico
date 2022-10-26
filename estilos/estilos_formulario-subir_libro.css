@@ -56,8 +56,17 @@
 }
 .inputBoton{
     display: block;
+    background-color: #b8b8b8;
     width: 450px;
-    height: 30px;
+    height: 45px;
+    font-size: 20px;
+    border-radius: 2px;
+    border:none;
+}
+.inputBoton:hover{
+    background-color: #27ae60;
+    transition: .3s;
+    color: #ecf0f1;
 }
 
 input[type="checkbox"]{
@@ -115,6 +124,15 @@ input:checked[type="checkbox"]::before{
     justify-content:center;
     align-items: center;
     margin-left: 5px;
+}
+
+@media screen and (max-width:858px) {
+    .contenedor{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        margin: 20px;
+    }
 }
   
   

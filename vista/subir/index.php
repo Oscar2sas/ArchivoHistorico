@@ -19,20 +19,20 @@
         
         <div class='contenedor'>
             <div class='formulario'>
-                <input type='text' name='titulo_biblioteca' placeholder="Titulo" class='inputText'>
-                <input type='text' name='autor' placeholder="Autor" class='inputText'>
-                <input type='text' name='materia' placeholder="Materia" class='inputText'>
+                <input type='text' name='titulo_biblioteca' placeholder="Titulo" class='inputText' require>
+                <input type='text' name='autor' placeholder="Autor" class='inputText' require>
+                <input type='text' name='materia' placeholder="Materia" class='inputText' require>
                 <p id='pala' ><?php  Palabras_claves(); ?></p> 
-                <label for="" class="contenedorCheck">Nueva palabra clave:  <span class="spanCheck"><input type="checkbox" name="" id="" class="check"></span></label>
+                <label for="" class="contenedorCheck">Nueva palabra clave:  <span class="spanCheck"><input type="checkbox" name="" id="" class="check" require></span></label>
                 <label for=""></label>
                 <?php 
                 Tipo_Archivo();
                 Coleccion();?>
 
-                <div class="mb-3"><input class="form-control" type="file" id="formFile"></div>
+                <div class="mb-3"><input class="form-control" type="file" id="formFile" require></div>
                 
-                <textarea name='sipn' id='' cols='30' rows='10' placeholder='Sinopsis' class='inputArea'></textarea>
-                <input type='submit' name='saso' class='inputBoton'>
+                <textarea name='sipn' id='' cols='30' rows='10' placeholder='Sinopsis' class='inputArea' require></textarea>
+                <input type='submit' name='saso' class='inputBoton' value='Guardar'>
             </div>
             <div class='tapa_libro'>
 
