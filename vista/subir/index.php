@@ -3,50 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="<?php echo $absolute_include;?>estilos/cosas.css">
+    <link rel="stylesheet" href="<?php echo $absolute_include;?>estilos/estilos_formulario-subir_libro.css">
+    <link rel="stylesheet" href="<?php echo $absolute_include;?>estilos/Navbar.css">
+    <link rel="stylesheet" href="<?php echo $absolute_include;?>RemixIcon_Fonts_v2.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="<?php echo $absolute_include;?>estilos/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
 <?php 
 	include($absolute_include.'vista/componentes/Navbar.php');
  ?>
-
-    <form action="<?php echo $absolute_include;?>controladores/Subir_archivo/controler-sub.php" method="post"
-        enctype="multipart/form-data">
+<div>
+    <form action="<?php echo $absolute_include;?>controladores/Subir_archivo/controler-sub.php" method="post" enctype="multipart/form-data">
         <input hidden name='accion' value='guardar'>
         <input hidden name='area' value=1>
+        
+        <div class='contenedor'>
+            <div class='formulario'>
+                <input type='text' name='titulo_biblioteca' placeholder="Titulo" class='inputText'>
+                <input type='text' name='autor' placeholder="Autor" class='inputText'>
+                <input type='text' name='materia' placeholder="Materia" class='inputText'>
+                <p id='pala' ><?php  Palabras_claves(); ?></p> 
+                <label for="" class="contenedorCheck">Nueva palabra clave:  <span class="spanCheck"><input type="checkbox" name="" id="" class="check"></span></label>
+                <label for=""></label>
+                <?php 
+                Tipo_Archivo();
+                Coleccion();?>
 
-        <div id='sas'>
-        <p><label>Titulo: </label><input type='text' name='titulo_biblioteca'></p>
-        <p><label>Autor: </label><input type='text' name='autor'></p>
-        <p><label>Materia: </label><input type='text' name='materia'></p>
-        <p><label>Palabra clave: </label></p><p id='pala' >
+                <div class="mb-3"><input class="form-control" type="file" id="formFile"></div>
+                
+                <textarea name='sipn' id='' cols='30' rows='10' placeholder='Sinopsis' class='inputArea'></textarea>
+                <input type='submit' name='saso' class='inputBoton'>
+            </div>
+            <div class='tapa_libro'>
 
-        <?php  Palabras_claves(); ?>
-        </p><p><label>Nueva palabra Clave: </label><input type='checkbox' name='' id='plc'>
-        </p><?php 
-        Tipo_Archivo();
+                    <label for='perfil'>
+                        <img src="<?php echo $carpeta_trabajo;?>/storage/imagenes/defaul-img.png" class='img-tapa' id="vista_previa">
+                    </label>
 
-        Coleccion();?>
-
-        <p><label>Archivo: </label><input type='file' name='Arch' id='arch'></p><div id=omar>
-
-        <div class="form-group">
-            <label>Perfil</label><br>
-            <label for="perfil">
-                <img src="<?php echo $carpeta_trabajo;?>/storage/usuarios/default.png" style="width: 350px;" id="vista_previa">
-            </label>
-            <label id="info"></label><input hidden type="file" id="perfil" class="form-control" name="TP"
-                accept="image/png, image/gif, image/jpeg">
-        </div>
-
-        <p><label>Sinopsis: </label></p></div>
-        <p><textarea name='sipn' id='' cols='30' rows='10'></textarea></p>
-        <p><input type='submit' name='saso'></p>
+                    <label id="info"></label><input hidden type="file" id="perfil" class="form-control" name="TP" accept="image/png, image/gif, image/jpeg">
+            </div>
         </div>
 
     </form>
+    </div>
 
     <script src="<?php echo $carpeta_trabajo;?>/storage/js/jquery.min.js"></script>
+    <script src="<?php echo $carpeta_trabajo;?>/storage/js/jquery.min.js"></script>
+    <script src="<?php echo $carpeta_trabajo;?>/estilos/bootstrap/js/bootstrap.min.js"></script>
     <script>
         $("#perfil").change(mostrarImagen);
 
@@ -60,12 +63,15 @@
 
             var file = event.target.files[0];
             var reader = new FileReader();
-            $("#info").html("Subiendo...");
             reader.onload = function (event) {
                 $('#vista_previa').attr("src", event.target.result);
                 $("#info").html("");
             }
             reader.readAsDataURL(file);
+            if(!document.getElementById("vista_previa").classList.contains("show")){
+                document.getElementById("vista_previa").classList.toggle("show");
+            }
+            
         }
     </script>
 </body>

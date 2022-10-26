@@ -144,7 +144,7 @@
         $statement = $conexion->prepare($sql);
         $statement->execute();
 
-        $formulario = '<select name="PLC" id="palabra">';
+        $formulario = '<select name="PLC" id="palabra" class="inputSelect">';
         $formulario.='<option value="0">Elige la palabra clave</option>';
 
         while ($fila= $statement->fetch(PDO::FETCH_ASSOC)) {
@@ -166,7 +166,7 @@
         $statement = $conexion->prepare($sql);
         $statement->execute();
 
-        $formulario = '<p><label>Tipo de documento: </label><select name="TipoCB" id="TPA">';
+        $formulario = '<p><select name="TipoCB" id="TPA" class="inputSelect">';
 
         while ($fila= $statement->fetch(PDO::FETCH_ASSOC)) {
             $formulario.='<option value="'.$fila['ID_tipo_cont_b'].'">'.$fila['Descripcion'].'</option>';
@@ -189,7 +189,7 @@
         $statement = $conexion->prepare($sql);
         $statement->execute();
 
-        $formulario = '<p><label>Coleccion: </label><select name="CLN" id="">';
+        $formulario = '<p><select name="CLN" id="" class="inputSelect">';
 
         while ($fila= $statement->fetch(PDO::FETCH_ASSOC)) {
             $formulario.='<option value="'.$fila['ID_coleccion'].'">'.$fila['Tipo_coleccion'].'</option>';
