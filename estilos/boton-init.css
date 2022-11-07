@@ -18,7 +18,8 @@
 }
 
 .boton_contendor{  
-    display: block;
+    display: flex;
+    position:absolute;
     float: right;
     padding: 5px;
 }

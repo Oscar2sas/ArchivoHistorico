@@ -13,7 +13,6 @@
 <?php
 	if (@$_SESSION['rela_rol_id'] == 1){
 		include($absolute_include.'vista/componentes/sideBar.php');
-		echo "<a href='".$carpeta_trabajo."/administracion/logout.php'>cerrar sesion</a>";
 	} 
 	elseif(@$_SESSION['rela_rol_id'] == ''){
 		include($absolute_include.'vista/componentes/botones-inicio.php');
