@@ -14,7 +14,7 @@
 		}
 		
 		include($absolute_include."conexion/conexion.php");
-		include($absolute_include."modelo/subir-archivo/modelo-subir.php");
+		include($absolute_include."modelo/Biblioteca/subir-archivo/modelo-subir.php");
 			
 			$accion = '';
 			
@@ -37,6 +37,6 @@
 
 		
 		
-		include($absolute_include."vista/subir/index.php");
+		include($absolute_include."vista/Biblioteca/subir/index.php");
 		
 	?>
