@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="stylesheet" href="<?php echo $carpeta_trabajo;?>/estilos/registro-login.css">
-	<link rel="stylesheet" href="<?php echo $carpeta_trabajo;?>/estilos/index.css">
-    <title>Login</title>
-	<style>
-</style>
-</head>
-<body class="fondo">
+<?php include($absolute_include."vista/plantilla/header.php"); ?>
 	<div class="imagen">
 		<img width="200" src="<?php echo $carpeta_trabajo;?>/storage/imagenes/patrimonio.png" alt="logo">
 	</div>
@@ -27,6 +16,7 @@
 			echo '<div class="error"> '.$des_error.' </div>';
 		}
 	?>
+
 	<main>
 		<div class="contenedor_todo">
 			<div class="caja_trasera">
@@ -47,13 +37,14 @@
 				<form action="<?php echo $carpeta_trabajo;?>/administracion/autenticar.php" method="post" class="formulario_login">
 
 					<h2>Iniciar Sesion</h2>
+
 					<input type="text" placeholder="Correo ELectronico" name="usuario" require>
 					<input type="password" placeholder="Contraseña" name="password" require>
 					<button type="submit"> Ingresar</button>
 				</form>
 				
 				<form action="<?php echo $carpeta_trabajo;?>/administracion/registrar.php" method="post" class="formulario_registrar">
-				<input type="hidden" name="accion" value="registrar">
+					<input type="hidden" name="accion" value="registrar">
 					<h2>Crear Cuenta</h2>
 					<input type=" text" placeholder="Nombre Completo" name="cnombre_usuario">
 					<input type=" text" placeholder="Correo Electronico" name="cemail_usuario">
@@ -64,6 +55,5 @@
 
 		</div>
 	</main>
-	<script src="<?php echo $carpeta_trabajo;?>/storage/js/registrer.js"></script>
-</body>
-</html>
+
+<?php include($absolute_include."vista/plantilla/footers.php"); ?>

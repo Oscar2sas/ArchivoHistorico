@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="<?php echo $absolute_include;?>estilos/estilos_formulario-subir_libro.css">
-    <link rel="stylesheet" href="<?php echo $absolute_include;?>estilos/Navbar.css">
-    <link rel="stylesheet" href="<?php echo $absolute_include;?>RemixIcon_Fonts_v2.5.0/fonts/remixicon.css">
-    <link rel="stylesheet" href="<?php echo $absolute_include;?>estilos/bootstrap/css/bootstrap.min.css">
-</head>
-<body class ="fondo">
+<?php include($absolute_include."vista/plantilla/header.php"); ?>
 <?php 
 	include($absolute_include.'vista/componentes/Navbar.php');
  ?>
@@ -46,10 +36,6 @@
 
     </form>
     </div>
-
-    <script src="<?php echo $carpeta_trabajo;?>/storage/js/jquery.min.js"></script>
-    <script src="<?php echo $carpeta_trabajo;?>/storage/js/navBar.js"></script>
-    <script src="<?php echo $carpeta_trabajo;?>/estilos/bootstrap/js/bootstrap.min.js"></script>
     <script>
         $("#perfil").change(mostrarImagen);
 
@@ -74,6 +60,4 @@
             
         }
     </script>
-</body>
-
-</html>
+<?php include($absolute_include."vista/plantilla/footers.php"); ?>
