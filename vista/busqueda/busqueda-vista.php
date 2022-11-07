@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><?php echo $aBuscar; ?></title>
-    <link rel="stylesheet" href="<?php echo $absolute_include ?>estilos/cosas.css">
-</head>
-<body>
+<?php include($absolute_include."vista/plantilla/header.php"); ?>
 
     <form action="" method="post">
         <div class="buscador">
@@ -17,5 +10,4 @@
             echo $key;
         } ?>
     </form>
-</body>
-</html>
+<?php include($absolute_include."vista/plantilla/footers.php"); ?>
