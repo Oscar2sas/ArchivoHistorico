@@ -15,18 +15,32 @@
 		
 		include($absolute_include."conexion/conexion.php");
 		include($absolute_include."modelo/Biblioteca/subir-archivo/modelo-subir.php");
+
+			$titulo_area = "Biblioteca";
+			$ruta_home = "controladores/Biblioteca/Subir_archivo/controler-sub.php";
+			$ruta_subir = "controladores/Biblioteca/Subir_archivo/controler-sub.php?accion=subir";
 			
 			$accion = '';
 			
 			if(isset($_REQUEST['accion'])){
 				$accion = $_REQUEST['accion'];
 			}
+			if($accion == ''){
 
-			if ($accion == 'biblioteca') {
+				$titulo_area = "Biblioteca";
+				$ruta_home = "controladores/Biblioteca/Subir_archivo/controler-sub.php";
+				$ruta_subir = "controladores/Biblioteca/Subir_archivo/controler-sub.php?accion=subir";
+				$encendido = 'home';
+				include($absolute_include."vista/Biblioteca/index/index.php");
 
-				$alonso = formar_Formulario();
-				echo json_encode($alonso);
-				return;
+			}elseif ($accion == 'subir') {
+
+				$titulo_area = "Biblioteca";
+				$ruta_home = "controladores/Biblioteca/Subir_archivo/controler-sub.php";
+				$ruta_subir = "controladores/Biblioteca/Subir_archivo/controler-sub.php?accion=subir";
+				$encendido = 'subir';
+				include($absolute_include."vista/Biblioteca/subir/index.php");
+				
 			}elseif ($accion == 'palabra') {
 				$listapalabra = Palabras_L();
 				echo json_encode($listapalabra);
@@ -35,8 +49,5 @@
 				guardar($_POST);
 			}
 
-		
-		
-		include($absolute_include."vista/Biblioteca/subir/index.php");
 		
 	?>

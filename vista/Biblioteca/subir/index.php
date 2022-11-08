@@ -36,7 +36,9 @@
 
     </form>
     </div>
-    <script>
+<?php include($absolute_include."vista/plantilla/footers.php"); ?>
+
+<script>
         $("#perfil").change(mostrarImagen);
 
 
@@ -60,4 +62,3 @@
             
         }
     </script>
-<?php include($absolute_include."vista/plantilla/footers.php"); ?>
