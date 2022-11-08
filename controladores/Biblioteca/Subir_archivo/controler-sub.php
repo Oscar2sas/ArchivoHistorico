@@ -15,10 +15,14 @@
 		
 		include($absolute_include."conexion/conexion.php");
 		include($absolute_include."modelo/Biblioteca/subir-archivo/modelo-subir.php");
+<<<<<<< HEAD
 
 			$titulo_area = "Biblioteca";
 			$ruta_home = "controladores/Biblioteca/Subir_archivo/controler-sub.php";
 			$ruta_subir = "controladores/Biblioteca/Subir_archivo/controler-sub.php?accion=subir";
+=======
+		include($absolute_include."modelo/Palabras-claves/modelo-Pc.php");
+>>>>>>> 699899d58f9bf6cbe3b75ef6dc582bb683fc430a
 			
 			$accion = '';
 			
