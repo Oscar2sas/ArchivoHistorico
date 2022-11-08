@@ -10,5 +10,4 @@
             echo $key;
         } ?>
     </form>
-</body>
-</html>
+<?php include($absolute_include."vista/plantilla/footers.php"); ?>

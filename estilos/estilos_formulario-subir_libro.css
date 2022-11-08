@@ -13,8 +13,6 @@
     margin: 5px;
     display: flex;
     background-color: #cecece;
-    width: 250px;
-    height: 350px;
     justify-content: center;
     align-items: center;
     border: solid 1px rgb(136, 136, 136)
@@ -24,8 +22,8 @@
     width: 80px;
 }
 .show{
-    width: 250px;
-    height: 350px;
+    width: 100%;
+    /* height: 500px; */
 }
 .inputText{
     display: block;

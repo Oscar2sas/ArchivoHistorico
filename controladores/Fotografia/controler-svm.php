@@ -1,4 +1,4 @@
-	<?php 
+<?php 
 		$carpeta_trabajo="";
 		$seccion_trabajo="/controladores";
 
@@ -14,7 +14,7 @@
 		}
 		
 		include($absolute_include."conexion/conexion.php");
-		include($absolute_include."modelo/Biblioteca/subir-archivo/modelo-subir.php");
+		include($absolute_include."modelo/Fotografia/modelo-foto_svm.php");
 		include($absolute_include."modelo/Palabras-claves/modelo-Pc.php");
 			
 			$accion = '';
@@ -23,21 +23,14 @@
 				$accion = $_REQUEST['accion'];
 			}
 
-			if ($accion == 'biblioteca') {
-
-				$alonso = formar_Formulario();
-				echo json_encode($alonso);
-				return;
-			}elseif ($accion == 'palabra') {
-				$listapalabra = Palabras_L();
-				echo json_encode($listapalabra);
-				return;
+			if ($accion == '') {
+				include($absolute_include."vista/Fotografia/foto-svm/index.php");
 			}elseif ($accion == 'guardar') {
 				guardar($_POST);
 			}
 
 		
 		
-		include($absolute_include."vista/Biblioteca/subir/index.php");
+		
 		
 	?>
