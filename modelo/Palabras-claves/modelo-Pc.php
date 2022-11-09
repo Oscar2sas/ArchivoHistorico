@@ -8,7 +8,7 @@
         $statement->execute();
 
         
-        $ultimoId = buscar_ultimo_id_p();
+        $ultimoId = $conexion->lastInsertId();
 
         $statement = $db->cerrar_conexion($conexion);
 

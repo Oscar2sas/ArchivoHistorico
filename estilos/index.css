@@ -87,12 +87,9 @@
 	background-color:#BDC3C7;
 }
 
-@media screen and (max-width:858px) {
-	.titulo{
-		font-size: 25px;
-		text-align: center;
-		border-bottom: solid 1px black;
-		font-weight:bold;
-		display: flex;
+@media screen and (max-width:858px) and (orientation: landscape){
+
+	.inputB{
+		width:calc(100% - 200px);
 	}
 }

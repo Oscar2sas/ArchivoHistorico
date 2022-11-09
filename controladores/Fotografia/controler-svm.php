@@ -24,7 +24,23 @@
 			}
 
 			if ($accion == '') {
+
+				$titulo_area = "Fotografia";
+				$ruta_home = "controladores/Fotografia/controler-svm.php";
+				$ruta_subir = "controladores/Fotografia/controler-svm.php?accion=subir";
+				$encendido = 'home';
+				$icon='ri-camera-fill';
+
+				include($absolute_include."vista/Fotografia/index/index.php");
+			}elseif ($accion == 'subir') {
+
+				$titulo_area = "Fotografia";
+				$ruta_home = "controladores/Fotografia/controler-svm.php";
+				$ruta_subir = "controladores/Fotografia/controler-svm.php?accion=subir";
+				$encendido = 'subir';
+				$icon='ri-camera-fill';
 				include($absolute_include."vista/Fotografia/foto-svm/index.php");
+				
 			}elseif ($accion == 'guardar') {
 				guardar($_POST);
 			}

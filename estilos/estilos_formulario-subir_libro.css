@@ -131,6 +131,25 @@ input:checked[type="checkbox"]::before{
         justify-content: center;
         margin: 20px;
     }
+
+    .formulario{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .tapa_libro{
+        margin: 5px;
+        width: 60%;
+        display: flex;
+        background-color: #cecece;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        border: solid 1px rgb(136, 136, 136)
+    }
 }
   
   

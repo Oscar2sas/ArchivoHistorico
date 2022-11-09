@@ -3,7 +3,7 @@
 	include($absolute_include.'vista/componentes/Navbar.php');
  ?>
 <div>
-    <form action="<?php echo $absolute_include;?>controladores/Subir_archivo/controler-sub.php" method="post" enctype="multipart/form-data">
+    <form action="<?php echo $absolute_include;?>controladores/Biblioteca/Subir_archivo/controler-sub.php" method="post" enctype="multipart/form-data">
         <input hidden name='accion' value='guardar'>
         <input hidden name='area' value=1>
         
@@ -13,13 +13,13 @@
                 <input type='text' name='autor' placeholder="Autor" class='inputText' require>
                 <input type='text' name='materia' placeholder="Materia" class='inputText' require>
                 <p id='pala' ><?php  Palabras_claves(); ?></p> 
-                <label for="" class="contenedorCheck">Nueva palabra clave:  <span class="spanCheck"><input type="checkbox" name="" id="" class="check" require></span></label>
+                <label for="" class="contenedorCheck">Nueva palabra clave:  <span class="spanCheck"><input type="checkbox" name="" id="plc" class="check" require></span></label>
                 <label for=""></label>
                 <?php 
                 Tipo_Archivo();
                 Coleccion();?>
 
-                <div class="mb-3"><input class="form-control" type="file" id="formFile" require></div>
+                <div class="mb-3"><input class="form-control" type="file" name='Arch' id="formFile" require></div>
                 
                 <textarea name='sipn' id='' cols='30' rows='10' placeholder='Sinopsis' class='inputArea' require></textarea>
                 <input type='submit' name='saso' class='inputBoton' value='Guardar'>
@@ -41,6 +41,16 @@
 <script>
         $("#perfil").change(mostrarImagen);
 
+        $('#plc').change( function() { 
+                if(this.checked){
+                    document.getElementById('palabra').remove();
+                    $('#pala').append('<input name="palabraNueva" id="palabraN" class="inputText" placeholder="Ingreses Nueva Plabra Clave">');
+
+                }else{
+                    document.getElementById('palabraN').remove();
+                    $('#pala').append('<?php echo Palabras_claves(); ?>');
+                }
+            });
 
         function mostrarImagen(event) {
             //console.log(event)

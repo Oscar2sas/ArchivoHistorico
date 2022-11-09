@@ -13,7 +13,7 @@
                 <input type='text' name='Fuente' placeholder="Fuentes" class='inputText' require>
                 <input type='date' name='Fecha'class='inputText' require>
                 <p id='pala' ><?php  Palabras_claves(); ?></p> 
-                <label for="" class="contenedorCheck">Nueva palabra clave:  <span class="spanCheck"><input type="checkbox" name="" id="" class="check" require></span></label>
+                <label for="" class="contenedorCheck">Nueva palabra clave:  <span class="spanCheck"><input type="checkbox" name="" id="plc" class="check" require></span></label>
                                 
                 <textarea name='descr' id='' cols='30' rows='10' placeholder='Descripciones' class='inputArea' require></textarea>
                 <input type='submit' name='saso' class='inputBoton' value='Guardar'>
@@ -35,6 +35,16 @@
 <script>
         $("#perfil").change(mostrarImagen);
 
+        $('#plc').change( function() { 
+                if(this.checked){
+                    document.getElementById('palabra').remove();
+                    $('#pala').append('<input name="palabraNueva" id="palabraN" class="inputText" placeholder="Ingreses Nueva Plabra Clave">');
+
+                }else{
+                    document.getElementById('palabraN').remove();
+                    $('#pala').append('<?php echo Palabras_claves(); ?>');
+                }
+            });
 
         function mostrarImagen(event) {
             //console.log(event)
