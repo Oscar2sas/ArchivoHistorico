@@ -27,7 +27,7 @@ function armar_Tabla($lista){
     $relacion = 0;
     foreach($lista as $result){
             $tabla='
-                <div>
+                <div class="contenedor-libro">
                     <p>
                     Nombre de Ususario: '.$result['cnombre_usuario'].'
                     </p>
