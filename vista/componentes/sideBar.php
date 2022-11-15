@@ -10,6 +10,7 @@
 			<li><a href='<?php echo $carpeta_trabajo;?>/controladores/Fotografia/controler-svm.php' class='sideButtom'><i class="ri-camera-fill"></i>Fotografia</a></li>
 			<li><a href='#' class='sideButtom'><i class="ri-newspaper-line"></i>Hemeroteca</a></li>
 			<li><a href='#' class='sideButtom'><i class="ri-book-3-fill"></i>Expedientes judiciales</a></li>
+			<li><a href='<?php echo $carpeta_trabajo;?>/controladores/Administracion/administrer-controler.php' class='sideButtom'><i class="ri-book-3-fill"></i>Administracion</a></li>
 			<li><a href="<?php echo $carpeta_trabajo;?>/administracion/logout.php" class='sideButtom'><i class="ri-logout-box-line"></i>Cerrar Sesión</a></li>
 		</ul>
 	</div>

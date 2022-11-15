@@ -56,13 +56,15 @@ if(!$resultados){
         
         $usuario_id = 0;
         header("Location: ".$carpeta_trabajo."/administracion/login.php?error=1");
+    } 
+    
+    if ($estado_usuario === 2) {
+        $usuario_id = 0;
+        header("Location: ".$carpeta_trabajo."/administracion/login.php?error=3");
     }
     if ($rela_rol_id == 20) {
         $usuario_id = 0;
         header("Location: ".$carpeta_trabajo."/administracion/login.php?error=4");
-    }if ($estado_usuario == 2) {
-        $usuario_id = 0;
-        header("Location: ".$carpeta_trabajo."/administracion/login.php?error=3");
     }
 
     $_SESSION['usuario_id'] = $usuario_id;
