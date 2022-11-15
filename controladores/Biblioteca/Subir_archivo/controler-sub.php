@@ -40,10 +40,6 @@
 				$icon='ri-book-mark-line';
 				include($absolute_include."vista/Biblioteca/subir/index.php");
 				
-			}elseif ($accion == 'palabra') {
-				$listapalabra = Palabras_L();
-				echo json_encode($listapalabra);
-				return;
 			}elseif ($accion == 'guardar') {
 				guardar($_POST);
 				$titulo_area = "Biblioteca";

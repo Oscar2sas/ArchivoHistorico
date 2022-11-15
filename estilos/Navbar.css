@@ -4,9 +4,6 @@
 	outline: 0;
 	box-sizing: border-box;
 }
-body{
-	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
 .menu{
 	background-color: #151719;
 	height: 75px;

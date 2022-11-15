@@ -1,0 +1,69 @@
+.contenedor-libro{
+    border: solid 1px rgb(199, 199, 199);
+    background-color: #fff;
+    width: 50%;
+    margin: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.contenedor-libro:hover{
+    background-color: #ddd;
+}
+
+.contenido{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.contenedor-titulo{
+    padding-left: 15px;
+    display: flex;
+    width: 100%;
+    border-bottom: solid 1px rgb(199, 199, 199);
+    font-size: 25px;
+    color: #17e;
+}
+
+.cont{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5px;
+    color: #444;
+}
+
+.contenido p{
+    font-size: 22px;
+    border-bottom: solid 1px rgb(199, 199, 199);
+    padding: 2xp;
+}
+
+.contenedor-descripcion{
+    display: flex;
+    width: 100%;
+    padding-left: 15px;
+    border-top: solid 1px rgb(199, 199, 199);
+    font-size: 22px;
+    color: #444;
+}
+
+.img-libro{
+    width: 20%;
+    margin: 5px;
+    padding: 5px;
+    border-left: solid 1px rgb(199, 199, 199);
+}
+
+
+.contenedor-busqueda{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

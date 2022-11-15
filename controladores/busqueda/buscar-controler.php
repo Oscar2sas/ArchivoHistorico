@@ -69,42 +69,41 @@
 
             }elseif ($result['tipo'] == 'Imagenes') {
                 $Detalles = detalle_fotografia($result['id_archivo']);
-                $tabla = '<table>
-                <tr>
-                <td class="titulo"><a href="http:'.$result['rutas'].$result['Nombre_Archivo'].'">'.$result['Titulo'].'</a>
-                </td>
-                <td rowspan="2" class="img"> <img src="'.$result['rutas'].$result['Nombre_Archivo'].'" alt="indice" width="20%">
-                </td>
-                </tr>
-                <tr>
-                <td>'.$Detalles['Descripcion'].'
-                </td>
-                </tr>
-                </table>';
+                $tabla = '
+                <div class="contenedor-libro">
+
+                        <p class="contenedor-titulo"><a href="'.$result['rutas'].$result['Nombre_Archivo'].'" class="titulo_libro">'.$result['Titulo'].'</a></p>
+
+                        <div class="contenedor-img-libro">
+                            <a href="http:'.$result['rutas'].$result['Nombre_Archivo'].'"><img src="'.$result['rutas'].$result['Nombre_Archivo'].'" alt="tapa" class="img-libro"></a>
+                        </div>
+
+                        <div class="contenedor-autor-materia">
+                            <p>Fuente: '.$Detalles['fuente'].'</p>
+                            <p style="border-left:solid 1px rgb(199, 199, 199); margin:10px; ">Materia: '.$Detalles['fecha'].'</p>
+                        </div>
+
+                        <p class="sinopsis">'.$Detalles['Descripcion'].'</p>
+                    </div>';
                 array_push($listadeCosas,$tabla);
 
             }elseif ($result['tipo'] == 'Libro') {
                 if($relacion != $result['Relacion']){
                     $libro = armar_libros($result['Relacion']);
                     $detalle_libro = detalle_libro($libro[1]['id_archivo']);
-                    $tabla = '<table>
-                    <tr>
-                    <td class="titulo" colspan="2"><a href="http:'.$libro[0]['rutas'].$libro[0]['Nombre_Archivo'].'">'.$libro[0]['Titulo'].'</a>
-                    </td>
-                    <td rowspan="3" class="img"> <a href="http:'.$libro[1]['rutas'].$libro[1]['Nombre_Archivo'].'"><img src="'.$libro[1]['rutas'].$libro[1]['Nombre_Archivo'].'" alt="indice" width="10%"></a>
-                    </td>
-                    </tr>
-                    <tr>
-                    <td colspan="2">'.$detalle_libro['sinopsis'].'
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>Autor: '.$detalle_libro['Autor'].'
-                    </td>
-                    <td>Materia: '.$detalle_libro['Materia'].'
-                    </td>
-                    </tr>
-                    </table>';
+                    $tabla = '
+                    <a href="'.$libro[0]['rutas'].$libro[0]['Nombre_Archivo'].'" class="contenedor-libro">
+                    <p class="contenedor-titulo">'.$libro[0]['Titulo'].'</p>
+                    <div class="contenido">
+                        <div class="cont" >
+                            <p>Autor: '.$detalle_libro['Autor'].'</p>
+                            <p>Materia: '.$detalle_libro['Materia'].'</p>
+                            <p >Tipo: Libro</p>
+                        </div>
+                        <img src="'.$libro[1]['rutas'].$libro[1]['Nombre_Archivo'].'" alt="tapa" class="img-libro">
+                    </div>
+                    <p class="contenedor-descripcion">'.$detalle_libro['sinopsis'].'</p>
+                </a>';
                     $relacion = $result['Relacion'];
                     array_push($listadeCosas,$tabla);
                 }
