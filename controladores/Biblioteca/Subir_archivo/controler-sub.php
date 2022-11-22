@@ -15,7 +15,9 @@
 		
 		include($absolute_include."modelo/Palabras-claves/modelo-Pc.php");
 		include($absolute_include."conexion/conexion.php");
+		include($absolute_include."modelo/busqueda/busqueda-modelo.php");
 		include($absolute_include."modelo/Biblioteca/subir-archivo/modelo-subir.php");
+		
 			
 			$accion = '';
 			
@@ -29,6 +31,9 @@
 				$ruta_subir = "controladores/Biblioteca/Subir_archivo/controler-sub.php?accion=subir";
 				$encendido = 'home';
 				$icon='ri-book-mark-line';
+
+				$libros = buscar_libro();
+
 				include($absolute_include."vista/Biblioteca/index/index.php");
 
 			}elseif ($accion == 'subir') {

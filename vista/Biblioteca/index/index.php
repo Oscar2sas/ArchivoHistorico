@@ -2,6 +2,12 @@
 include($absolute_include."vista/componentes/Navbar.php");
 ?>
 
-<h1>Esta es la vista de biblioteca</h1>
+<div class=''>
+    <label for='caja_busqueda'>Buscar: </label>
+    <input type="text" name="caja_busqueda" id="caja_busqueda">
+</div>
+<div class='contenedor-busqueda' id='datos'>
+    
+</div>
 
 <?php include($absolute_include."vista/plantilla/footers.php"); ?>

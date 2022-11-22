@@ -2,8 +2,23 @@
 	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+
 body{
 	background-color: #cecece;
+}
+
+.contenedor-inicio{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+}
+
+.form-inicio{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .titulo{
@@ -62,29 +77,30 @@ body{
     box-shadow: 2px 1px 3px black;
 }
 .inputB{
-	width:calc(100% - 800px);
+	margin:0px;
+	width:700px;
+	font-size: 22px;
+	padding: 10px;
 	display: inline-block;
-	margin: 0 auto;
 	outline:none;
-	padding:15px;
 	padding-left:40px;
-	font-size:24px;
 	border-top-left-radius:80px;
 	border-bottom-left-radius:80px;
-	border:none;
-	box-shadow: 1px 1px 5px black;
+	border:solid 1px rgb(160, 160, 160);
 	
 }
 .botonB{
-	margin:0;
-	padding:15px;
-	font-size:22px;
-	border:none;
+	margin:0px;
+	padding: 10px;
+	font-size: 20px;
+	border-right:solid 1px rgb(160, 160, 160);
+	border-top:solid 1px rgb(160, 160, 160);
+	border-bottom:solid 1px rgb(160, 160, 160);
+	border-left:none;
 	background-color: white;
 	border-top-right-radius:80px;
 	border-bottom-right-radius:80px;
 	display: inline-block;
-	box-shadow: 2px 1px 5px black;
 }
 .botonB:hover{
 	transition:0.5s;

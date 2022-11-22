@@ -1,7 +1,5 @@
 <?php include($absolute_include."vista/plantilla/header.php"); ?>
-	<div class="imagen">
-		<img width="200" src="<?php echo $carpeta_trabajo;?>/storage/imagenes/patrimonio.png" alt="logo">
-	</div>
+<div class='contenedor-login'>
 	
 	<?php
 		if(isset($_GET['error'])){
@@ -55,5 +53,5 @@
 
 		</div>
 	</main>
-
+</div>
 <?php include($absolute_include."vista/plantilla/footers.php"); ?>

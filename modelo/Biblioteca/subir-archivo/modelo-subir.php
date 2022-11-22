@@ -1,4 +1,38 @@
 <?php
+		if(isset($_POST['consulta'])){
+			$consulta = $_POST['consulta'];
+
+			$db = new ConexionDB;
+			$conexion = $db->retornar_conexion();
+		
+			$lista_resultados = array();
+		
+			$sql = "SELECT * FROM archivos a1, rutas r1, tipo_archivo ta1 ,palabras_claves p1,areas a2,biblioteca b1 WHERE a1.Id_ruta = r1.Id_rutas AND a1.Id_tipo_archivo = ta1.Id_tipo_Archivo AND a1.Id_palabra_clave = p1.Id_palabra_clave AND b1.ID_Archivo = a1.id_archivo AND a1.Area = a2.ID_Areas AND a1.area = 1;";
+		
+			$statement = $conexion->prepare($sql);
+			$statement->execute();
+		
+			if (!$statement) {
+				$tabla = "No se encontraron libros";
+				// no se encontraron paises
+			}
+			else {
+			
+				// reviso el retorno
+				while ($resultado= $statement->fetch(PDO::FETCH_ASSOC)) {
+					$lista_resultados[] = $resultado;
+				}
+				
+				$tabla = armar_Tabla($lista_resultados);
+	
+			}
+
+			
+		
+			return $tabla;			
+		}
+
+		
 
 	function guardar($POST){
 		$Titulo = $POST['titulo_biblioteca'];
@@ -180,4 +214,24 @@
 
         return $formulario;
     }
+
+	function buscar_libro(){
+		$db = new ConexionDB;
+		$conexion = $db->retornar_conexion();
+	
+		$lista_resultados = array();
+	
+		$sql = "SELECT * FROM archivos a1, rutas r1, tipo_archivo ta1 ,palabras_claves p1,areas a2 WHERE a1.Id_ruta = r1.Id_rutas AND a1.Id_tipo_archivo = ta1.Id_tipo_Archivo AND a1.Id_palabra_clave = p1.Id_palabra_clave AND a1.Area = a2.ID_Areas AND a1.area = 1 ";
+	
+		$statement = $conexion->prepare($sql);
+		$statement->execute();
+	
+		while ($resultado= $statement->fetch(PDO::FETCH_ASSOC)) {
+			$lista_resultados[] = $resultado;
+		}
+		
+		$tabla = armar_Tabla($lista_resultados);
+	
+		return $tabla;
+	}
 ?>

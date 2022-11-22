@@ -9,16 +9,17 @@
 		include($absolute_include.'vista/componentes/botones-inicio.php');
 	}
  ?>
-	<div class="imagen" >
-		<img width="200" src="<?php echo $carpeta_trabajo;?>/storage/imagenes/patrimonio.png" alt="logo">
+
+	<div class='contenedor-inicio'>
+		<div class="imagen" >
+			<img width="200" src="<?php echo $carpeta_trabajo;?>/storage/imagenes/patrimonio.png" alt="logo">
+		</div>
+
+		<h1>Bienvenido al Archivo Historico Provincial</h1>
+
+			<form action="<?php echo $carpeta_trabajo;?>/controladores/busqueda/buscar-controler.php" method="post" class='form-inicio'>
+			<input type="text" name="busqueda" class='inputB'><button class='botonB'><i class="ri-search-line"></i></button>
+			</form>
 	</div>
-
-    <h1>Bienvenido al Archivo Historico Provincial</h1>
-
-	<p>
-		<form action="<?php echo $carpeta_trabajo;?>/controladores/busqueda/buscar-controler.php" method="post">
-        <input type="text" name="busqueda" class='inputB'><button class='botonB'><i class="ri-search-line"></i></button>
-    	</form>
-	</p>
 
 	<?php include($absolute_include."vista/plantilla/footers.php"); ?>

@@ -2,7 +2,7 @@
 include($absolute_include."vista/componentes/Navbar_ADM.php");
 ?>
 
-<div>
+<div class="">
     <?php
             foreach ($user as $us){
                 echo $us;
