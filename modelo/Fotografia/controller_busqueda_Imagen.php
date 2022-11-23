@@ -62,25 +62,21 @@
             $relacion = array();
             foreach ($lista as $key) {
             
-                if(!in_array($key['Relacion'],$relacion)){
-                    $pdf = armar_libros($key['Relacion']);
-                    $libro= '
-                    <a href="'.$key['rutas'].$pdf.'" class="contenedor-libro">
+                    $img= '
+                    <a href="'.$key['rutas'].$key['Nombre_Archivo'].'" class="contenedor-libro">
                         <p class="contenedor-titulo">'.$key['Titulo'].'</p>
-                        <div class="contenido">
-                            <div class="cont" >
-                                <p>Autor: '.$key['Autor'].'</p>
-                                <p>Materia: '.$key['Materia'].'</p>
-                                <p >Tipo: Libro</p>
+                        <img src="'.$key['rutas'].$key['Nombre_Archivo'].'" alt="tapa" class="img">
+                        <div class="contenido_img">
+                            <div class="cont-img" >
+                                <p>Fuente: '.$key['fuente'].'</p>
+                                <p>Fecha: '.$key['fecha'].'</p>
+                                <p class="fi" >Tipo: '.$key['tipo'].'</p>
                             </div>
-                                <img src="'.$key['rutas'].$key['Nombre_Archivo'].'" alt="tapa" class="img-libro">
+                                
                             </div>
-                            <p class="contenedor-descripcion">'.$key['sinopsis'].'</p>
+                            <p class="contenedor-descripcion">'.$key['Descripcion'].'</p>
                         </a>';
-                        $relacion[] = $key['Relacion'];
-                        echo $libro;
-
-                }
+                        echo $img;
                
             }
 
@@ -111,43 +107,36 @@
         
             $lista_resultados = array();
         
-            $sql = "SELECT a.Nombre_Archivo,a.Titulo,a.Relacion, a.Id_tipo_archivo,
+            $sql = "SELECT a.Nombre_Archivo,a.Titulo,a.Id_tipo_archivo,
             r.rutas, 
             plc.palabra_clave, 
-            tpa.tipo, 
-            b.Autor,b.Materia,b.sinopsis, 
-            c.Tipo_coleccion, 
-            tcb.Descripcion AS 'Tipo_Contenido' 
+            tpa.tipo,
+            f.Descripcion,f.fuente,f.fecha
             FROM archivos a 
             LEFT JOIN rutas r ON a.Id_ruta = r.Id_rutas 
             LEFT JOIN palabras_claves plc ON a.Id_palabra_clave = plc.Id_palabra_clave 
-            LEFT JOIN tipo_archivo tpa ON a.Id_tipo_archivo = tpa.Id_tipo_Archivo 
-            LEFT JOIN biblioteca b ON a.id_archivo = b.ID_Archivo 
-            LEFT JOIN coleccion c ON b.ID_coleccion = c.ID_coleccion 
-            LEFT JOIN tipo_cont_b tcb ON b.Tipo = tcb.ID_tipo_cont_b
-            WHERE a.Id_tipo_archivo = 5;";
+            LEFT JOIN tipo_archivo tpa ON a.Id_tipo_archivo = tpa.Id_tipo_Archivo
+            LEFT JOIN fotografia f ON a.id_archivo = f.Id_archivo
+            WHERE a.Id_tipo_archivo = 2;";
             
             
             if(isset($_POST['consulta'])){
                 $consulta = $_POST['consulta'];
-                $sql = "SELECT a.Nombre_Archivo,a.Titulo,a.Relacion,
-                r.rutas,
-                plc.palabra_clave,
+                $sql = "SELECT a.Nombre_Archivo,a.Titulo,a.Id_tipo_archivo,
+                r.rutas, 
+                plc.palabra_clave, 
                 tpa.tipo,
-                b.Autor,b.Materia,b.sinopsis,
-                c.Tipo_coleccion,
-                tcb.Descripcion AS 'Tipo_Contenido'
-                FROM archivos a
-                LEFT JOIN rutas r ON a.Id_ruta = r.Id_rutas
-                LEFT JOIN palabras_claves plc ON a.Id_palabra_clave = plc.Id_palabra_clave
+                f.Descripcion,f.fuente,f.fecha
+                FROM archivos a 
+                LEFT JOIN rutas r ON a.Id_ruta = r.Id_rutas 
+                LEFT JOIN palabras_claves plc ON a.Id_palabra_clave = plc.Id_palabra_clave 
                 LEFT JOIN tipo_archivo tpa ON a.Id_tipo_archivo = tpa.Id_tipo_Archivo
-                LEFT JOIN biblioteca b ON a.id_archivo = b.ID_Archivo
-                LEFT JOIN coleccion c ON b.ID_coleccion = c.ID_coleccion
-                LEFT JOIN tipo_cont_b tcb ON b.Tipo = tcb.ID_tipo_cont_b
-                WHERE a.Titulo LIKE '%$consulta%' 
-                OR plc.palabra_clave LIKE '%$consulta%' 
-                OR b.Autor LIKE '%$consulta%' 
-                OR b.sinopsis LIKE '%$consulta%';";
+                LEFT JOIN fotografia f ON a.id_archivo = f.Id_archivo
+                WHERE a.Id_tipo_archivo = 2
+                AND a.Titulo LIKE '%$consulta%'
+                OR f.Descripcion LIKE '%$consulta%'
+                OR f.fuente LIKE '%$consulta%'
+                OR f.fecha LIKE '%$consulta%';";
             }
 
             $statement = $conexion->prepare($sql);

@@ -6,7 +6,16 @@ function buscar($buscar){
 
     $lista_resultados = array();
 
-    $sql = "SELECT * FROM archivos a1, rutas r1, tipo_archivo ta1 ,palabras_claves p1,areas a2 WHERE a1.Id_ruta = r1.Id_rutas AND a1.Id_tipo_archivo = ta1.Id_tipo_Archivo AND a1.Id_palabra_clave = p1.Id_palabra_clave AND a1.Area = a2.ID_Areas AND p1.palabra_clave = '$buscar'";
+    $sql = "SELECT a.Nombre_Archivo,a.Titulo,a.Relacion,a.id_archivo,
+    r.rutas,
+    plc.palabra_clave,
+    tpa.tipo
+    FROM archivos a
+    LEFT JOIN rutas r ON a.Id_ruta = r.Id_rutas
+    LEFT JOIN palabras_claves plc ON a.Id_palabra_clave = plc.Id_palabra_clave
+    LEFT JOIN tipo_archivo tpa ON a.Id_tipo_archivo = tpa.Id_tipo_Archivo
+    WHERE a.Titulo LIKE '%$buscar%' 
+    OR plc.palabra_clave LIKE '%$buscar%';";
 
     $statement = $conexion->prepare($sql);
     $statement->execute();
@@ -42,24 +51,22 @@ function armar_Tabla($lista){
             array_push($listadeCosas,$tabla);
 
         }elseif ($result['tipo'] == 'Imagenes') {
-            $Detalles = detalle_fotografia($result['id_archivo']);
-            $tabla = '
-            <div class="contenedor-libro">
-
-                    <p class="contenedor-titulo"><a href="'.$result['rutas'].$result['Nombre_Archivo'].'" class="titulo_libro">'.$result['Titulo'].'</a></p>
-
-                    <div class="contenedor-img-libro">
-                        <a href="http:'.$result['rutas'].$result['Nombre_Archivo'].'"><img src="'.$result['rutas'].$result['Nombre_Archivo'].'" alt="tapa" class="img-libro"></a>
+            $des = detalle_foto($result['id_archivo']);
+            $img= '
+            <a href="'.$result['rutas'].$result['Nombre_Archivo'].'" class="contenedor-libro">
+                <p class="contenedor-titulo">'.$result['Titulo'].'</p>
+                <img src="'.$result['rutas'].$result['Nombre_Archivo'].'" alt="tapa" class="img">
+                <div class="contenido_img">
+                    <div class="cont-img" >
+                        <p>Fuente: '.@$des['fuente'].'</p>
+                        <p>Fecha: '.@$des['fecha'].'</p>
+                        <p class="fi" >Tipo: '.$result['tipo'].'</p>
                     </div>
-
-                    <div class="contenedor-autor-materia">
-                        <p>Fuente: '.$Detalles['fuente'].'</p>
-                        <p style="border-left:solid 1px rgb(199, 199, 199); margin:10px; ">Materia: '.$Detalles['fecha'].'</p>
+                        
                     </div>
-
-                    <p class="sinopsis">'.$Detalles['Descripcion'].'</p>
-                </div>';
-            array_push($listadeCosas,$tabla);
+                    <p class="contenedor-descripcion">'.@$des['Descripcion'].'</p>
+                </a>';
+            array_push($listadeCosas,$img);
 
         }elseif ($result['tipo'] == 'Libro') {
             if($relacion != $result['Relacion']){
@@ -88,22 +95,6 @@ function armar_Tabla($lista){
 
 }
 
-    function detalle_fotografia($id_a_buscar){
-        $db = new ConexionDB;
-        $conexion = $db->retornar_conexion();
-
-        $lista_resultados = array();
-
-        $sql = "SELECT * FROM fotografia WHERE Id_archivo = $id_a_buscar ;";
-
-        $statement = $conexion->prepare($sql);
-        $statement->execute();
-
-        while ($resultado= $statement->fetch(PDO::FETCH_ASSOC)) {
-            return $resultado;
-        }
-    }
-
     function armar_libros($relacion){
         $db = new ConexionDB;
         $conexion = $db->retornar_conexion();
@@ -122,13 +113,31 @@ function armar_Tabla($lista){
         return $lista_resultados;
     }
 
-    function detalle_libro($id_libro){
+    function detalle_foto($id_libro){
+        $foto = array();
         $db = new ConexionDB;
         $conexion = $db->retornar_conexion();
 
         $lista_resultados = array();
 
-        $sql = "SELECT * FROM biblioteca WHERE ID_Archivo = $id_libro;";
+        $sql = "SELECT * FROM `fotografia` WHERE Id_fotografia = '$id_libro';";
+
+        $statement = $conexion->prepare($sql);
+        $statement->execute();
+
+        while ($resultado= $statement->fetch(PDO::FETCH_ASSOC)) {
+            return $resultado;
+        }
+    }
+
+    function detalle_libro($id_libro){
+        $foto = array();
+        $db = new ConexionDB;
+        $conexion = $db->retornar_conexion();
+
+        $lista_resultados = array();
+
+        $sql = "SELECT * FROM `biblioteca` WHERE ID_Archivo = $id_libro;";
 
         $statement = $conexion->prepare($sql);
         $statement->execute();

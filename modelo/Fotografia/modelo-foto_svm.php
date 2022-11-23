@@ -74,7 +74,7 @@
 				$statement->execute();
 			}catch(PDOException $ex){
 				echo $ex->getMessage();
-        }
+        	}
     
         
         $ultimoId = $conexion->lastInsertId();
@@ -89,36 +89,10 @@
 			$statement->execute();
 		}catch(PDOException $ex){
 			echo $ex->getMessage();
-	}
-
-        $statement->execute();
+		}
     
         $statement = $db->cerrar_conexion($conexion);
 		header ("location:controler-svm.php");
     }
 
-    function Coleccion(){
-        $db = new ConexionDB;
-        $conexion = $db->retornar_conexion();
-
-        $sql = 'SELECT * FROM coleccion';
-
-        $statement = $conexion->prepare($sql);
-        $statement->execute();
-
-        $formulario = '<p><select name="CLN" id="" class="inputSelect">';
-
-        while ($fila= $statement->fetch(PDO::FETCH_ASSOC)) {
-            $formulario.='<option value="'.$fila['ID_coleccion'].'">'.$fila['Tipo_coleccion'].'</option>';
-        }
-        $formulario.= '</select>';
-
-        $formulario.="</p>";
-
-        $statement = $db->cerrar_conexion($conexion);
-
-        echo $formulario;
-    }
-
-    
 ?>
