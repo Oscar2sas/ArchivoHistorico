@@ -1,6 +1,6 @@
 <?php 
 		$carpeta_trabajo="";
-		$seccion_trabajo="/controladores";
+		$seccion_trabajo="/modelo";
 
 		if (strpos($_SERVER["PHP_SELF"], $seccion_trabajo) >1 ) {
 			$carpeta_trabajo=substr($_SERVER["PHP_SELF"],1, strpos($_SERVER["PHP_SELF"] , $seccion_trabajo) -1);
@@ -58,13 +58,14 @@
 		
         
 
-        function armar_Tabla($lista){
+        function armar_Tabla($lista,$absolute_include){
+            if(!empty($lista)){
             $relacion = array();
             foreach ($lista as $key) {
             
                 if(!in_array($key['Relacion'],$relacion)){
                     $pdf = armar_libros($key['Relacion']);
-                    $libro= '
+                    $libro= '<div class="contenedor-busqueda">
                     <a href="'.$key['rutas'].$pdf.'" class="contenedor-libro">
                         <p class="contenedor-titulo">'.$key['Titulo'].'</p>
                         <div class="contenido">
@@ -76,12 +77,20 @@
                                 <img src="'.$key['rutas'].$key['Nombre_Archivo'].'" alt="tapa" class="img-libro">
                             </div>
                             <p class="contenedor-descripcion">'.$key['sinopsis'].'</p>
-                        </a>';
+                        </a>
+                        <div class="">
+                        <a href="'.$absolute_include.'controladores/Biblioteca/controler-sub.php?accion=edit&id='.$key['id_archivo'].'" class="btn_modificar" ><i class="ri-edit-fill"></i></a>
+                        <a href="'.$absolute_include.'controladores/Biblioteca/controler-sub.php?accion=delete&id='.$key['id_archivo'].'" class="btn_eliminar" ><i class="ri-delete-bin-2-fill"></i></a></div>
+                        </div>';
                         $relacion[] = $key['Relacion'];
                         echo $libro;
 
                 }
                
+            }
+            }else{
+                echo '<center><img src="../../storage/imagenes/sinResultado.png" style="width:150px;opacity:1; trasition:all 1s"/>
+                <h1>No se Encontraron resultados</h1></center>';
             }
 
         
@@ -111,7 +120,7 @@
         
             $lista_resultados = array();
         
-            $sql = "SELECT a.Nombre_Archivo,a.Titulo,a.Relacion, a.Id_tipo_archivo,
+            $sql = "SELECT a.id_archivo,a.Nombre_Archivo,a.Titulo,a.Relacion, a.Id_tipo_archivo,
             r.rutas, 
             plc.palabra_clave, 
             tpa.tipo, 
@@ -130,7 +139,7 @@
             
             if(isset($_POST['consulta'])){
                 $consulta = $_POST['consulta'];
-                $sql = "SELECT a.Nombre_Archivo,a.Titulo,a.Relacion,
+                $sql = "SELECT a.id_archivo,a.Nombre_Archivo,a.Titulo,a.Relacion,
                 r.rutas,
                 plc.palabra_clave,
                 tpa.tipo,
@@ -166,7 +175,7 @@
                 }
 
                 
-                $tabla = armar_Tabla($lista_resultados);
+                $tabla = armar_Tabla($lista_resultados,$absolute_include);
     
             }
             

@@ -15,6 +15,7 @@
 	
 	$aBuscar = $_POST['busqueda'];
 	
+	include($absolute_include."administracion/sesion2.php");
 	include($absolute_include."/conexion/conexion.php");
 	include($absolute_include."modelo/busqueda/busqueda-modelo.php");
 	

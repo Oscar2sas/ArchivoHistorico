@@ -19,3 +19,4 @@ include($absolute_include."administracion/sesion.php");
 
 header("Location: ".$carpeta_trabajo."/controladores/inicio/");
 ?>
+

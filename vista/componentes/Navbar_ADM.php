@@ -8,8 +8,6 @@
 			<li><a href="<?php echo $absolute_include?>controladores/inicio/index.php">Inicio</a></li>
 			<li><a href="<?php echo $absolute_include?>controladores/Biblioteca/Subir_archivo/controler-sub.php">Biblioteca</a></li>
 			<li><a href="<?php echo $absolute_include?>controladores/Fotografia/controler-svm.php">Fotografia</a></li>
-			<li><a href="http://">Hemeroteca</a></li>
-			<li><a href="http://">Expedientes Judiciales</a></li>
 		</ul>
 	</div>
 	<span class='btn_menu' onclick="showmenu()">

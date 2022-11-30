@@ -12,9 +12,10 @@ if (!empty($carpeta_trabajo)) {
     $carpeta_trabajo = "/".$carpeta_trabajo; 
     
 }
-
+include($absolute_include."administracion/sesion.php");
 include($absolute_include."/conexion/conexion.php");
 include($absolute_include."/modelo/Administracion/administrer_modelo.php");
+include($absolute_include."/modelo/log/modelo_log.php");
 
 $accion = "";
 
@@ -23,7 +24,8 @@ if(isset($_REQUEST['accion'])) {
 }
 if($accion==''){
     $titulo_area = "Administracion";
-   $user=Buscar_user();
+    $user=Buscar_user();
+    $logs = buscar_log();
     include($absolute_include."vista/Administracion/index.php");
 }
 

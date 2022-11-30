@@ -8,7 +8,7 @@ function Buscar_user (){
 
     $lista_resultados = array();
 
-    $sql = "SELECT * FROM usuarios u1, rol r1 WHERE u1.rela_rol_id = r1.rol_id;";
+    $sql = "SELECT * FROM usuarios u1, rol r1,estados_usuario e WHERE u1.rela_rol_id = r1.rol_id and u1.estado = e.id_estado;";
 
     $statement = $conexion->prepare($sql);
     $statement->execute();
@@ -27,11 +27,11 @@ function armar_Tabla($lista){
     $relacion = 0;
     foreach($lista as $result){
             $tabla='
-                <div class="contenedor-libro">
+                <div class="contenedor-user">
                     <p>
                     Nombre de Ususario: '.$result['cnombre_usuario'].'
                     </p>
-                    <p>
+                    <p class="centro">
                     Email: '.$result['cemail_usuario'].'
                     </p>
                     <p>

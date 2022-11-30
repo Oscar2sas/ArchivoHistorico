@@ -13,5 +13,6 @@
     <link rel="stylesheet" href="<?php echo $carpeta_trabajo;?>/estilos/estilo_libro.css">
     <link rel="stylesheet" href="<?php echo $carpeta_trabajo;?>/estilos/boton-init.css">
     <title>Archivo Historico</title>
+    <link rel="icon" href="<?php echo $carpeta_trabajo;?>/storage/imagenes/patrimonio.ico">
 </head>
 <body>

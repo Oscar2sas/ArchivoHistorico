@@ -13,7 +13,10 @@
 			
 		}
 		
+		include($absolute_include."administracion/sesion.php");
 		include($absolute_include."conexion/conexion.php");
+		include ($absolute_include."modelo/log/modelo_log.php");
+		include($absolute_include."modelo/busqueda/busqueda-modelo.php");
 		include($absolute_include."modelo/Fotografia/modelo-foto_svm.php");
 		include($absolute_include."modelo/Palabras-claves/modelo-Pc.php");
 			
@@ -43,6 +46,25 @@
 				
 			}elseif ($accion == 'guardar') {
 				guardar($_POST);
+			}elseif ($accion == 'edit') {
+				$id = $_GET['id'];
+				$titulo_area = "Modificar";
+				$datos_libro = buscar_una_image($id);
+				include($absolute_include."vista/Fotografia/modificar/modificar.php");
+			}elseif ($accion == 'Modificar') {
+				modificar_img($_POST);
+				
+			}
+			elseif ($accion == 'delete') {
+				$id = $_GET['id'];
+				$titulo_area = "Eliminar";
+				$libro = buscar_una_image_d($id);
+				include($absolute_include."vista/Fotografia/eliminar/eliminar.php");
+			}
+			elseif ($accion == 'eliminar') {
+				$id = $_GET['id'];
+				Eliminar($id);
+				
 			}
 
 		

@@ -80,8 +80,8 @@ if(!$resultados){
 
     $_SESSION['token'] = $token;
 
-    $cdescripcion_log = 'Ingreso el sistema: '.$_SESSION['nombreUsuario'].' con ID: '.$_SESSION['usuario_id'];
-    //insertar_log($cdescripcion_log);
+    $cdescripcion_log = 'Ingreso al sistema: '.$_SESSION['nombreUsuario'].' con ID: '.$_SESSION['usuario_id'];
+    insertar_log($cdescripcion_log);
 
     if (($usuario_id != 0) && ($rela_rol_id == 1) || ($rela_rol_id == 2) || ($rela_rol_id == 3) || ($rela_rol_id == 4) ) {
         header("Location: ".$carpeta_trabajo."/index.php");

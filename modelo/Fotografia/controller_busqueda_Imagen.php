@@ -1,6 +1,6 @@
 <?php 
 		$carpeta_trabajo="";
-		$seccion_trabajo="/controladores";
+		$seccion_trabajo="/modelo";
 
 		if (strpos($_SERVER["PHP_SELF"], $seccion_trabajo) >1 ) {
 			$carpeta_trabajo=substr($_SERVER["PHP_SELF"],1, strpos($_SERVER["PHP_SELF"] , $seccion_trabajo) -1);
@@ -58,11 +58,12 @@
 		
         
 
-        function armar_Tabla($lista){
+        function armar_Tabla($lista,$absolute_include){
+            if(!empty($lista)){
             $relacion = array();
             foreach ($lista as $key) {
             
-                    $img= '
+                    $img= '<div class="contenedor-busqueda">
                     <a href="'.$key['rutas'].$key['Nombre_Archivo'].'" class="contenedor-libro">
                         <p class="contenedor-titulo">'.$key['Titulo'].'</p>
                         <img src="'.$key['rutas'].$key['Nombre_Archivo'].'" alt="tapa" class="img">
@@ -75,12 +76,19 @@
                                 
                             </div>
                             <p class="contenedor-descripcion">'.$key['Descripcion'].'</p>
-                        </a>';
+                        </a>
+                        <div class="">
+                        <a href="'.$absolute_include.'controladores/Fotografia/controler-svm.php?accion=edit&id='.$key['id_archivo'].'" class="btn_modificar" ><i class="ri-edit-fill"></i></a>
+                        <a href="'.$absolute_include.'controladores/Fotografia/controler-svm.php?accion=delete&id='.$key['id_archivo'].'" class="btn_eliminar" ><i class="ri-delete-bin-2-fill"></i></a></div></div>';
                         echo $img;
                
             }
 
         
+        }else{
+                echo '<center><img src="../../storage/imagenes/sinResultado.png" style="width:150px;opacity:1; trasition:all 1s"/>
+                <h1>No se Encontraron resultados</h1></center>';
+            }
         }
 
             function armar_libros($relacion){
@@ -107,7 +115,7 @@
         
             $lista_resultados = array();
         
-            $sql = "SELECT a.Nombre_Archivo,a.Titulo,a.Id_tipo_archivo,
+            $sql = "SELECT a.id_archivo,a.Nombre_Archivo,a.Titulo,a.Id_tipo_archivo,
             r.rutas, 
             plc.palabra_clave, 
             tpa.tipo,
@@ -155,7 +163,7 @@
                 }
 
                 
-                $tabla = armar_Tabla($lista_resultados);
+                $tabla = armar_Tabla($lista_resultados,$absolute_include);
     
             }
             

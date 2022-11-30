@@ -1,10 +1,83 @@
 .contenedor-libro{
     border: solid 1px rgb(199, 199, 199);
     background-color: #fff;
-    width: 50%;
+    width: 40%;
     margin: 5px;
     border-radius: 10px;
     text-decoration: none;
+}
+
+.buscaja{
+    margin: 5px;
+}
+
+.buscaja input{
+    display: block;
+    width: 200px;
+    height: 45px;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.btn_eliminar{
+    text-decoration: none;
+    display: inline-block;
+    background-color: #e74c3c;
+    color: #ecf0f1;
+    margin: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.btn_modificar{
+    text-decoration: none;
+    display: inline-block;
+    background-color: #3498db;
+    color: #ecf0f1;
+    margin: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.btn_eliminar:hover{
+    background-color: #c0392b;
+    color: #bdc3c7;
+    margin: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.btn_modificar:hover{
+    background-color: #2980b9;
+    color: #bdc3c7;
+    margin: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.centro{
+    font-size: 16px;
+    text-align: center;
+    margin: 5px;
+    padding: 2xp;
+    border-right: solid 1px rgb(199, 199, 199);
+    border-left: solid 1px rgb(199, 199, 199);
+}
+
+.contenedor-user{
+    display: flex;
+    border: solid 1px rgb(199, 199, 199);
+    background-color: #fff;
+    width: 50%;
+    margin: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.contenedor-user:hover{
+    background-color: #ddd;
 }
 
 .contenedor-libro:hover{
@@ -102,8 +175,8 @@
 .contenedor-busqueda{
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row ;
     justify-content: center;
-    align-items: center;
+    align-items:flex-start;
 }
 

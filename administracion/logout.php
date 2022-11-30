@@ -25,6 +25,6 @@ include ($absolute_include. "modelo/log/modelo_log.php");
 
 session_destroy();
 
-header("Location: ".$carpeta_trabajo."/administracion/login.php"); 
+header("Location: ".$carpeta_trabajo."/index.php"); 
 
 ?>
